@@ -1,0 +1,25 @@
+﻿@model IList<MangalWebProject.Models.Entity.Mst_Zone>
+@using MangalWebProject.Models.Entity
+<div class="modal-content">
+    <div class="modal-body" style="height:inherit; overflow:auto;">
+        <div class="panel-body panel-no-padding" style="height:inherit; overflow:auto;">
+            <div id="demo">
+                <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered table-hover table-fixed-header m0" id="example">
+                    <thead>
+                        <tr>
+                            <th>Zone</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (Mst_Zone item in Model)
+                        {
+                            <tr class="gradeX" onclick='window.document.location="/Zone/GetZoneById?ID=@item.Zne_No"'>
+                                <td>@item.Zne_Desc</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div><!-- /.modal-content -->

@@ -1,0 +1,1272 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MangalDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Mst_AuditCheckList">
+          <Key>
+            <PropertyRef Name="Acl_Id" />
+          </Key>
+          <Property Name="Acl_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Acl_EffectiveDate" Type="datetime" Nullable="false" />
+          <Property Name="Acl_Categoryofaudit" Type="smallint" Nullable="false" />
+          <Property Name="Acl_CheckPoint" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Acl_Status" Type="smallint" Nullable="false" />
+          <Property Name="Acl_RecordCreated" Type="datetime" />
+          <Property Name="Acl_RecordUpdated" Type="datetime" />
+          <Property Name="Acl_RecordCreatedBy" Type="int" />
+          <Property Name="Acl_RecordUpdatedBy" Type="int" />
+        </EntityType>
+        <EntityType Name="Mst_Charge">
+          <Key>
+            <PropertyRef Name="Chg_Id" />
+          </Key>
+          <Property Name="Chg_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Chg_Name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Chg_ReferenceDate" Type="datetime" Nullable="false" />
+          <Property Name="Chg_Status" Type="smallint" Nullable="false" />
+          <Property Name="Chg_RecordCreated" Type="datetime" />
+          <Property Name="Chg_RecordUpdated" Type="datetime" />
+          <Property Name="Chg_RecordCreatedBy" Type="int" />
+          <Property Name="Chg_RecordUpdatedBy" Type="int" />
+        </EntityType>
+        <EntityType Name="Mst_ChargeDetails">
+          <Key>
+            <PropertyRef Name="Chgd_Id" />
+          </Key>
+          <Property Name="Chgd_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Chgd_ChgRefId" Type="int" Nullable="false" />
+          <Property Name="Chgd_LoanAmountGreater" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Chgd_LoanAmountLess" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Chgd_ChargesAmt" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Chgd_ChargeType" Type="smallint" />
+          <Property Name="Chg_RecordCreated" Type="datetime" />
+          <Property Name="Chg_RecordUpdated" Type="datetime" />
+          <Property Name="Chg_RecordCreatedBy" Type="int" />
+          <Property Name="Chg_RecordUpdatedBy" Type="int" />
+        </EntityType>
+        <EntityType Name="Mst_City">
+          <Key>
+            <PropertyRef Name="Ct_Id" />
+          </Key>
+          <Property Name="Ct_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ct_Desc" Type="varchar" MaxLength="20" />
+          <Property Name="Ct_StateId" Type="int" />
+          <Property Name="Ct_RecordCreated" Type="datetime" />
+          <Property Name="Ct_RecordUpdated" Type="datetime" />
+          <Property Name="Ct_RecordCreatedBy" Type="int" />
+          <Property Name="Ct_RecordUpdatedBy" Type="int" />
+        </EntityType>
+        <EntityType Name="Mst_Country">
+          <Key>
+            <PropertyRef Name="Cn_Id" />
+          </Key>
+          <Property Name="Cn_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Cn_Name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Cn_RecordCreated" Type="datetime" />
+          <Property Name="Cn_RecordUpdated" Type="datetime" />
+          <Property Name="Cn_RecordCreatedBy" Type="int" />
+          <Property Name="Cn_RecordUpdatedBy" Type="int" />
+        </EntityType>
+        <EntityType Name="Mst_DocumentMaster">
+          <Key>
+            <PropertyRef Name="Doc_Id" />
+          </Key>
+          <Property Name="Doc_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Doc_DocumentName" Type="varchar" MaxLength="50" />
+          <Property Name="Doc_DocumentType" Type="smallint" />
+          <Property Name="Doc_ExpiryDateApplicable" Type="bit" />
+          <Property Name="Doc_Status" Type="smallint" />
+          <Property Name="Doc_RecordCreated" Type="datetime" />
+          <Property Name="Doc_RecordUpdated" Type="datetime" />
+          <Property Name="Doc_RecordCreatedBy" Type="int" />
+          <Property Name="Doc_RecordUpdatedBy" Type="int" />
+        </EntityType>
+        <EntityType Name="Mst_GstMaster">
+          <Key>
+            <PropertyRef Name="Gst_RefId" />
+          </Key>
+          <Property Name="Gst_RefId" Type="int" Nullable="false" />
+          <Property Name="Gst_EffectiveFrom" Type="datetime" Nullable="false" />
+          <Property Name="Gst_CGST" Type="varchar" MaxLength="6" />
+          <Property Name="Gst_SGST" Type="varchar" MaxLength="6" />
+          <Property Name="Gst_IGST" Type="varchar" MaxLength="6" />
+          <Property Name="Gst_RecordCreated" Type="datetime" />
+          <Property Name="Gst_RecordUpdated" Type="datetime" />
+          <Property Name="Gst_RecordCreatedBy" Type="int" />
+          <Property Name="Gst_RecordUpdatedBy" Type="int" />
+        </EntityType>
+        <EntityType Name="Mst_Ornament">
+          <Key>
+            <PropertyRef Name="Orn_Id" />
+          </Key>
+          <Property Name="Orn_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Orn_Name" Type="varchar" MaxLength="50" />
+          <Property Name="Orn_Product" Type="smallint" />
+          <Property Name="Orn_Status" Type="smallint" />
+          <Property Name="Orn_RecordCreated" Type="datetime" />
+          <Property Name="Orn_RecordUpdated" Type="datetime" />
+          <Property Name="Orn_RecordCreatedBy" Type="int" />
+          <Property Name="Orn_RecordUpdatedBy" Type="int" />
+        </EntityType>
+        <EntityType Name="Mst_PenaltySlab">
+          <Key>
+            <PropertyRef Name="Ps_Id" />
+          </Key>
+          <Property Name="Ps_Id" Type="int" Nullable="false" />
+          <Property Name="Ps_Datewef" Type="datetime" Nullable="false" />
+          <Property Name="Ps_Penalty" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Ps_Accounthead" Type="int" Nullable="false" />
+          <Property Name="Ps_RecordCreated" Type="datetime" />
+          <Property Name="Ps_RecordUpdated" Type="datetime" />
+          <Property Name="Ps_RecordCreatedBy" Type="int" />
+          <Property Name="Ps_RecordUpdatedBy" Type="int" />
+        </EntityType>
+        <EntityType Name="Mst_PinCode">
+          <Key>
+            <PropertyRef Name="Pc_Id" />
+          </Key>
+          <Property Name="Pc_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Pc_Desc" Type="varchar" MaxLength="7" />
+          <Property Name="Pc_AreaName" Type="varchar" MaxLength="20" />
+          <Property Name="Pc_CityId" Type="int" Nullable="false" />
+          <Property Name="Pc_ZoneId" Type="int" Nullable="false" />
+          <Property Name="Pc_RecordCreated" Type="datetime" />
+          <Property Name="Pc_RecordUpdated" Type="datetime" />
+          <Property Name="Pc_RecordCreatedBy" Type="int" />
+          <Property Name="Pc_RecordUpdatedBy" Type="int" />
+        </EntityType>
+        <EntityType Name="Mst_PurityMaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PurityName" Type="varchar" MaxLength="10" />
+          <Property Name="PurityType" Type="int" />
+        </EntityType>
+        <EntityType Name="Mst_Reason">
+          <Key>
+            <PropertyRef Name="Re_No" />
+          </Key>
+          <Property Name="Re_No" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Re_Desc" Type="varchar" MaxLength="150" />
+          <Property Name="Re_Status" Type="smallint" />
+          <Property Name="Re_RecordCreated" Type="datetime" />
+          <Property Name="Re_RecordUpdated" Type="datetime" />
+          <Property Name="Re_RecordCreatedBy" Type="int" />
+          <Property Name="Re_RecordUpdatedBy" Type="int" />
+        </EntityType>
+        <EntityType Name="Mst_SourceofApplication">
+          <Key>
+            <PropertyRef Name="Soa_Id" />
+          </Key>
+          <Property Name="Soa_Id" Type="int" Nullable="false" />
+          <Property Name="Soa_Name" Type="varchar" MaxLength="30" />
+          <Property Name="Soa_Category" Type="smallint" />
+          <Property Name="Soa_Status" Type="smallint" />
+          <Property Name="Soa_RecordCreated" Type="datetime" />
+          <Property Name="Soa_RecordUpdated" Type="datetime" />
+          <Property Name="Soa_RecordCreatedBy" Type="int" />
+          <Property Name="Soa_RecordUpdatedBy" Type="int" />
+        </EntityType>
+        <EntityType Name="Mst_State">
+          <Key>
+            <PropertyRef Name="St_Id" />
+          </Key>
+          <Property Name="St_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="St_Code" Type="varchar" MaxLength="10" />
+          <Property Name="St_Desc" Type="varchar" MaxLength="20" />
+          <Property Name="St_CountryId" Type="int" />
+          <Property Name="St_RecordCreated" Type="datetime" />
+          <Property Name="St_RecordUpdated" Type="datetime" />
+          <Property Name="St_RecordCreatedBy" Type="int" />
+          <Property Name="St_RecordUpdatedBy" Type="int" />
+        </EntityType>
+        <EntityType Name="Mst_Zone">
+          <Key>
+            <PropertyRef Name="Zne_No" />
+          </Key>
+          <Property Name="Zne_No" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Zne_Desc" Type="varchar" MaxLength="20" />
+          <Property Name="Zne_RecordCreated" Type="datetime" />
+          <Property Name="Zne_RecordUpdated" Type="datetime" />
+          <Property Name="Zne_RecordCreatedBy" Type="int" />
+          <Property Name="Zne_RecordUpdatedBy" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_Menu">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ParentId" Type="int" />
+          <Property Name="Sequence" Type="nvarchar(max)" />
+          <Property Name="Item" Type="nvarchar(max)" />
+          <Property Name="Url" Type="nvarchar(max)" />
+          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="ToolTip" Type="nvarchar(max)" />
+          <Property Name="IconPath" Type="nvarchar(max)" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="int" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="DeletedBy" Type="int" />
+          <Property Name="DeletedDate" Type="datetime" />
+          <Property Name="isActive" Type="nvarchar(max)" />
+          <Property Name="MyParent_ID" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MangalDB.dbo.tbl_Payment' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tbl_Payment">
+          <Key>
+            <PropertyRef Name="paymentid" />
+          </Key>
+          <Property Name="paymentid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="refeno" Type="varchar" MaxLength="10" />
+          <Property Name="refdate" Type="date" />
+          <Property Name="amt" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="balamt" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="bankname" Type="varchar" MaxLength="100" />
+          <Property Name="branch" Type="varchar" MaxLength="100" />
+          <Property Name="neftcheqno" Type="varchar" MaxLength="30" />
+          <Property Name="status" Type="varchar" MaxLength="2" />
+          <Property Name="UserId" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MangalDB.dbo.tbl_User' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tbl_User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar(max)" />
+          <Property Name="Password" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="MobileNumber" Type="nvarchar(max)" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Gender" Type="nvarchar(max)" />
+          <Property Name="DOB" Type="datetime" />
+          <Property Name="UserCategory" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MangalDB.dbo.tbl_UserCategory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tbl_UserCategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="isActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblaccountmaster">
+          <Key>
+            <PropertyRef Name="AccountID" />
+          </Key>
+          <Property Name="AccountID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Alies" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="GPID" Type="int" Nullable="false" />
+          <Property Name="OpeningBalance" Type="float" Nullable="false" />
+          <Property Name="DrCr" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PanNo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="InterestRate" Type="float" Nullable="false" />
+          <Property Name="InterestMethod" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="GroupCompany" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="BankAcNo" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="MICRNo" Type="float" Nullable="false" />
+          <Property Name="AccountType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IFSNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="AreaID" Type="int" Nullable="false" />
+          <Property Name="Telephone" Type="nvarchar(max)" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Suspended" Type="nvarchar" MaxLength="50" />
+          <Property Name="GSTIN" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblGroupMaster">
+          <Key>
+            <PropertyRef Name="GPID" />
+          </Key>
+          <Property Name="GPID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GPName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="GPType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PID" Type="int" Nullable="false" />
+          <Property Name="SID" Type="int" Nullable="false" />
+          <Property Name="PrintSchedule" Type="nvarchar" MaxLength="50" />
+          <Property Name="ScheduleNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="tblPrimaryGroup">
+          <Key>
+            <PropertyRef Name="PgID" />
+          </Key>
+          <Property Name="PgID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PgName" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="u_userauthorization">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="isVisible" Type="bit" Nullable="false" />
+          <Property Name="isEdit" Type="bit" Nullable="false" />
+          <Property Name="isSave" Type="bit" Nullable="false" />
+          <Property Name="isDelete" Type="bit" Nullable="false" />
+          <Property Name="isView" Type="bit" Nullable="false" />
+          <Property Name="isDefault" Type="bit" Nullable="false" />
+          <Property Name="FormId" Type="int" />
+          <Property Name="RoleId" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="DeletedDate" Type="datetime" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="UpdatedBy" Type="int" />
+          <Property Name="DeletedBy" Type="int" />
+          <Property Name="User_Id" Type="int" />
+        </EntityType>
+        <Association Name="FK_Mst_ChargeDetails_Mst_ChargeDetails">
+          <End Role="Mst_Charge" Type="Self.Mst_Charge" Multiplicity="1" />
+          <End Role="Mst_ChargeDetails" Type="Self.Mst_ChargeDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mst_Charge">
+              <PropertyRef Name="Chg_Id" />
+            </Principal>
+            <Dependent Role="Mst_ChargeDetails">
+              <PropertyRef Name="Chgd_ChgRefId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mst_City_Mst_City">
+          <End Role="Mst_State" Type="Self.Mst_State" Multiplicity="0..1" />
+          <End Role="Mst_City" Type="Self.Mst_City" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mst_State">
+              <PropertyRef Name="St_Id" />
+            </Principal>
+            <Dependent Role="Mst_City">
+              <PropertyRef Name="Ct_StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mst_PinCode_Mst_PinCode">
+          <End Role="Mst_City" Type="Self.Mst_City" Multiplicity="1" />
+          <End Role="Mst_PinCode" Type="Self.Mst_PinCode" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mst_City">
+              <PropertyRef Name="Ct_Id" />
+            </Principal>
+            <Dependent Role="Mst_PinCode">
+              <PropertyRef Name="Pc_CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mst_State_Mst_Country">
+          <End Role="Mst_Country" Type="Self.Mst_Country" Multiplicity="0..1" />
+          <End Role="Mst_State" Type="Self.Mst_State" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mst_Country">
+              <PropertyRef Name="Cn_Id" />
+            </Principal>
+            <Dependent Role="Mst_State">
+              <PropertyRef Name="St_CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zoneid">
+          <End Role="Mst_Zone" Type="Self.Mst_Zone" Multiplicity="1" />
+          <End Role="Mst_PinCode" Type="Self.Mst_PinCode" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mst_Zone">
+              <PropertyRef Name="Zne_No" />
+            </Principal>
+            <Dependent Role="Mst_PinCode">
+              <PropertyRef Name="Pc_ZoneId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MangalDBModelStoreContainer">
+          <EntitySet Name="Mst_AuditCheckList" EntityType="Self.Mst_AuditCheckList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mst_Charge" EntityType="Self.Mst_Charge" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mst_ChargeDetails" EntityType="Self.Mst_ChargeDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mst_City" EntityType="Self.Mst_City" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mst_Country" EntityType="Self.Mst_Country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mst_DocumentMaster" EntityType="Self.Mst_DocumentMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mst_GstMaster" EntityType="Self.Mst_GstMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mst_Ornament" EntityType="Self.Mst_Ornament" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mst_PenaltySlab" EntityType="Self.Mst_PenaltySlab" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mst_PinCode" EntityType="Self.Mst_PinCode" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mst_PurityMaster" EntityType="Self.Mst_PurityMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mst_Reason" EntityType="Self.Mst_Reason" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mst_SourceofApplication" EntityType="Self.Mst_SourceofApplication" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mst_State" EntityType="Self.Mst_State" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mst_Zone" EntityType="Self.Mst_Zone" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Menu" EntityType="Self.tbl_Menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblaccountmaster" EntityType="Self.tblaccountmaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblGroupMaster" EntityType="Self.tblGroupMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPrimaryGroup" EntityType="Self.tblPrimaryGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="u_userauthorization" EntityType="Self.u_userauthorization" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Payment" EntityType="Self.tbl_Payment" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tbl_Payment].[paymentid] AS [paymentid], 
+    [tbl_Payment].[refeno] AS [refeno], 
+    [tbl_Payment].[refdate] AS [refdate], 
+    [tbl_Payment].[amt] AS [amt], 
+    [tbl_Payment].[balamt] AS [balamt], 
+    [tbl_Payment].[bankname] AS [bankname], 
+    [tbl_Payment].[branch] AS [branch], 
+    [tbl_Payment].[neftcheqno] AS [neftcheqno], 
+    [tbl_Payment].[status] AS [status], 
+    [tbl_Payment].[UserId] AS [UserId]
+    FROM [dbo].[tbl_Payment] AS [tbl_Payment]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tbl_User" EntityType="Self.tbl_User" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tbl_User].[Id] AS [Id], 
+    [tbl_User].[UserName] AS [UserName], 
+    [tbl_User].[Password] AS [Password], 
+    [tbl_User].[Email] AS [Email], 
+    [tbl_User].[MobileNumber] AS [MobileNumber], 
+    [tbl_User].[Name] AS [Name], 
+    [tbl_User].[Gender] AS [Gender], 
+    [tbl_User].[DOB] AS [DOB], 
+    [tbl_User].[UserCategory] AS [UserCategory]
+    FROM [dbo].[tbl_User] AS [tbl_User]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tbl_UserCategory" EntityType="Self.tbl_UserCategory" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tbl_UserCategory].[ID] AS [ID], 
+    [tbl_UserCategory].[Name] AS [Name], 
+    [tbl_UserCategory].[isActive] AS [isActive]
+    FROM [dbo].[tbl_UserCategory] AS [tbl_UserCategory]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Mst_ChargeDetails_Mst_ChargeDetails" Association="Self.FK_Mst_ChargeDetails_Mst_ChargeDetails">
+            <End Role="Mst_Charge" EntitySet="Mst_Charge" />
+            <End Role="Mst_ChargeDetails" EntitySet="Mst_ChargeDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mst_City_Mst_City" Association="Self.FK_Mst_City_Mst_City">
+            <End Role="Mst_State" EntitySet="Mst_State" />
+            <End Role="Mst_City" EntitySet="Mst_City" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mst_PinCode_Mst_PinCode" Association="Self.FK_Mst_PinCode_Mst_PinCode">
+            <End Role="Mst_City" EntitySet="Mst_City" />
+            <End Role="Mst_PinCode" EntitySet="Mst_PinCode" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mst_State_Mst_Country" Association="Self.FK_Mst_State_Mst_Country">
+            <End Role="Mst_Country" EntitySet="Mst_Country" />
+            <End Role="Mst_State" EntitySet="Mst_State" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zoneid" Association="Self.FK_Zoneid">
+            <End Role="Mst_Zone" EntitySet="Mst_Zone" />
+            <End Role="Mst_PinCode" EntitySet="Mst_PinCode" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MangalDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tbl_Menu">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParentId" Type="Int32" />
+          <Property Name="Sequence" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Item" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Url" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ToolTip" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IconPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="Int32" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedBy" Type="Int32" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+          <Property Name="isActive" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MyParent_ID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="u_userauthorization">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="isVisible" Type="Boolean" Nullable="false" />
+          <Property Name="isEdit" Type="Boolean" Nullable="false" />
+          <Property Name="isSave" Type="Boolean" Nullable="false" />
+          <Property Name="isDelete" Type="Boolean" Nullable="false" />
+          <Property Name="isView" Type="Boolean" Nullable="false" />
+          <Property Name="isDefault" Type="Boolean" Nullable="false" />
+          <Property Name="FormId" Type="Int32" />
+          <Property Name="RoleId" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="UpdatedBy" Type="Int32" />
+          <Property Name="DeletedBy" Type="Int32" />
+          <Property Name="User_Id" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbl_Payment">
+          <Key>
+            <PropertyRef Name="paymentid" />
+          </Key>
+          <Property Name="paymentid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="refeno" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="refdate" Type="DateTime" Precision="0" />
+          <Property Name="amt" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="balamt" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="bankname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="branch" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="neftcheqno" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="UserId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbl_User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MobileNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DOB" Type="DateTime" Precision="3" />
+          <Property Name="UserCategory" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbl_UserCategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="isActive" Type="Boolean" />
+        </EntityType>
+        <EntityContainer Name="MangalDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbl_Menu" EntityType="Self.tbl_Menu" />
+          <EntitySet Name="u_userauthorization" EntityType="Self.u_userauthorization" />
+          <EntitySet Name="tbl_Payment" EntityType="Self.tbl_Payment" />
+          <EntitySet Name="tbl_User" EntityType="Self.tbl_User" />
+          <EntitySet Name="tbl_UserCategory" EntityType="Self.tbl_UserCategory" />
+          <EntitySet Name="Mst_City" EntityType="MangalDBModel.Mst_City" />
+          <EntitySet Name="Mst_Country" EntityType="MangalDBModel.Mst_Country" />
+          <EntitySet Name="Mst_PinCode" EntityType="MangalDBModel.Mst_PinCode" />
+          <EntitySet Name="Mst_State" EntityType="MangalDBModel.Mst_State" />
+          <EntitySet Name="Mst_Zone" EntityType="MangalDBModel.Mst_Zone" />
+          <AssociationSet Name="FK_Mst_City_Mst_City" Association="MangalDBModel.FK_Mst_City_Mst_City">
+            <End Role="Mst_State" EntitySet="Mst_State" />
+            <End Role="Mst_City" EntitySet="Mst_City" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mst_PinCode_Mst_PinCode" Association="MangalDBModel.FK_Mst_PinCode_Mst_PinCode">
+            <End Role="Mst_City" EntitySet="Mst_City" />
+            <End Role="Mst_PinCode" EntitySet="Mst_PinCode" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mst_State_Mst_Country" Association="MangalDBModel.FK_Mst_State_Mst_Country">
+            <End Role="Mst_Country" EntitySet="Mst_Country" />
+            <End Role="Mst_State" EntitySet="Mst_State" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zoneid" Association="MangalDBModel.FK_Zoneid">
+            <End Role="Mst_Zone" EntitySet="Mst_Zone" />
+            <End Role="Mst_PinCode" EntitySet="Mst_PinCode" />
+          </AssociationSet>
+          <EntitySet Name="Mst_SourceofApplication" EntityType="MangalDBModel.Mst_SourceofApplication" />
+          <EntitySet Name="Mst_DocumentMaster" EntityType="MangalDBModel.Mst_DocumentMaster" />
+          <EntitySet Name="Mst_Ornament" EntityType="MangalDBModel.Mst_Ornament" />
+          <EntitySet Name="Mst_Reason" EntityType="MangalDBModel.Mst_Reason" />
+          <EntitySet Name="Mst_AuditCheckList" EntityType="MangalDBModel.Mst_AuditCheckList" />
+          <EntitySet Name="Mst_GstMaster" EntityType="MangalDBModel.Mst_GstMaster" />
+          <EntitySet Name="Mst_Charge" EntityType="MangalDBModel.Mst_Charge" />
+          <EntitySet Name="Mst_ChargeDetails" EntityType="MangalDBModel.Mst_ChargeDetails" />
+          <AssociationSet Name="FK_Mst_ChargeDetails_Mst_ChargeDetails" Association="MangalDBModel.FK_Mst_ChargeDetails_Mst_ChargeDetails">
+            <End Role="Mst_Charge" EntitySet="Mst_Charge" />
+            <End Role="Mst_ChargeDetails" EntitySet="Mst_ChargeDetails" />
+          </AssociationSet>
+          <EntitySet Name="Mst_PenaltySlab" EntityType="MangalDBModel.Mst_PenaltySlab" />
+          <EntitySet Name="Mst_PurityMaster" EntityType="MangalDBModel.Mst_PurityMaster" />
+          <EntitySet Name="tblaccountmasters" EntityType="MangalDBModel.tblaccountmaster" />
+          <EntitySet Name="tblGroupMasters" EntityType="MangalDBModel.tblGroupMaster" />
+          <EntitySet Name="tblPrimaryGroups" EntityType="MangalDBModel.tblPrimaryGroup" />
+          </EntityContainer>
+        <EntityType Name="Mst_City">
+          <Key>
+            <PropertyRef Name="Ct_Id" />
+          </Key>
+          <Property Name="Ct_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ct_Desc" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Ct_StateId" Type="Int32" />
+          <Property Name="Ct_RecordCreated" Type="DateTime" Precision="3" />
+          <Property Name="Ct_RecordUpdated" Type="DateTime" Precision="3" />
+          <Property Name="Ct_RecordCreatedBy" Type="Int32" />
+          <Property Name="Ct_RecordUpdatedBy" Type="Int32" />
+          <NavigationProperty Name="Mst_State" Relationship="MangalDBModel.FK_Mst_City_Mst_City" FromRole="Mst_City" ToRole="Mst_State" />
+          <NavigationProperty Name="Mst_PinCode" Relationship="MangalDBModel.FK_Mst_PinCode_Mst_PinCode" FromRole="Mst_City" ToRole="Mst_PinCode" />
+        </EntityType>
+        <EntityType Name="Mst_Country">
+          <Key>
+            <PropertyRef Name="Cn_Id" />
+          </Key>
+          <Property Name="Cn_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cn_Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Cn_RecordCreated" Type="DateTime" Precision="3" />
+          <Property Name="Cn_RecordUpdated" Type="DateTime" Precision="3" />
+          <Property Name="Cn_RecordCreatedBy" Type="Int32" />
+          <Property Name="Cn_RecordUpdatedBy" Type="Int32" />
+          <NavigationProperty Name="Mst_State" Relationship="MangalDBModel.FK_Mst_State_Mst_Country" FromRole="Mst_Country" ToRole="Mst_State" />
+        </EntityType>
+        <EntityType Name="Mst_PinCode">
+          <Key>
+            <PropertyRef Name="Pc_Id" />
+          </Key>
+          <Property Name="Pc_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Pc_Desc" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+          <Property Name="Pc_AreaName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Pc_CityId" Type="Int32" Nullable="false" />
+          <Property Name="Pc_ZoneId" Type="Int32" Nullable="false" />
+          <Property Name="Pc_RecordCreated" Type="DateTime" Precision="3" />
+          <Property Name="Pc_RecordUpdated" Type="DateTime" Precision="3" />
+          <Property Name="Pc_RecordCreatedBy" Type="Int32" />
+          <Property Name="Pc_RecordUpdatedBy" Type="Int32" />
+          <NavigationProperty Name="Mst_City" Relationship="MangalDBModel.FK_Mst_PinCode_Mst_PinCode" FromRole="Mst_PinCode" ToRole="Mst_City" />
+          <NavigationProperty Name="Mst_Zone" Relationship="MangalDBModel.FK_Zoneid" FromRole="Mst_PinCode" ToRole="Mst_Zone" />
+        </EntityType>
+        <EntityType Name="Mst_State">
+          <Key>
+            <PropertyRef Name="St_Id" />
+          </Key>
+          <Property Name="St_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="St_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="St_Desc" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="St_CountryId" Type="Int32" />
+          <Property Name="St_RecordCreated" Type="DateTime" Precision="3" />
+          <Property Name="St_RecordUpdated" Type="DateTime" Precision="3" />
+          <Property Name="St_RecordCreatedBy" Type="Int32" />
+          <Property Name="St_RecordUpdatedBy" Type="Int32" />
+          <NavigationProperty Name="Mst_City" Relationship="MangalDBModel.FK_Mst_City_Mst_City" FromRole="Mst_State" ToRole="Mst_City" />
+          <NavigationProperty Name="Mst_Country" Relationship="MangalDBModel.FK_Mst_State_Mst_Country" FromRole="Mst_State" ToRole="Mst_Country" />
+        </EntityType>
+        <EntityType Name="Mst_Zone">
+          <Key>
+            <PropertyRef Name="Zne_No" />
+          </Key>
+          <Property Name="Zne_No" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Zne_Desc" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Zne_RecordCreated" Type="DateTime" Precision="3" />
+          <Property Name="Zne_RecordUpdated" Type="DateTime" Precision="3" />
+          <Property Name="Zne_RecordCreatedBy" Type="Int32" />
+          <Property Name="Zne_RecordUpdatedBy" Type="Int32" />
+          <NavigationProperty Name="Mst_PinCode" Relationship="MangalDBModel.FK_Zoneid" FromRole="Mst_Zone" ToRole="Mst_PinCode" />
+        </EntityType>
+        <Association Name="FK_Mst_City_Mst_City">
+          <End Type="MangalDBModel.Mst_State" Role="Mst_State" Multiplicity="0..1" />
+          <End Type="MangalDBModel.Mst_City" Role="Mst_City" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mst_State">
+              <PropertyRef Name="St_Id" />
+            </Principal>
+            <Dependent Role="Mst_City">
+              <PropertyRef Name="Ct_StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mst_PinCode_Mst_PinCode">
+          <End Type="MangalDBModel.Mst_City" Role="Mst_City" Multiplicity="1" />
+          <End Type="MangalDBModel.Mst_PinCode" Role="Mst_PinCode" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mst_City">
+              <PropertyRef Name="Ct_Id" />
+            </Principal>
+            <Dependent Role="Mst_PinCode">
+              <PropertyRef Name="Pc_CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mst_State_Mst_Country">
+          <End Type="MangalDBModel.Mst_Country" Role="Mst_Country" Multiplicity="0..1" />
+          <End Type="MangalDBModel.Mst_State" Role="Mst_State" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mst_Country">
+              <PropertyRef Name="Cn_Id" />
+            </Principal>
+            <Dependent Role="Mst_State">
+              <PropertyRef Name="St_CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zoneid">
+          <End Type="MangalDBModel.Mst_Zone" Role="Mst_Zone" Multiplicity="1" />
+          <End Type="MangalDBModel.Mst_PinCode" Role="Mst_PinCode" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mst_Zone">
+              <PropertyRef Name="Zne_No" />
+            </Principal>
+            <Dependent Role="Mst_PinCode">
+              <PropertyRef Name="Pc_ZoneId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Mst_SourceofApplication">
+          <Key>
+            <PropertyRef Name="Soa_Id" />
+          </Key>
+          <Property Name="Soa_Id" Type="Int32" Nullable="false" />
+          <Property Name="Soa_Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Soa_Category" Type="Int16" />
+          <Property Name="Soa_Status" Type="Int16" />
+          <Property Name="Soa_RecordCreated" Type="DateTime" Precision="3" />
+          <Property Name="Soa_RecordUpdated" Type="DateTime" Precision="3" />
+          <Property Name="Soa_RecordCreatedBy" Type="Int32" />
+          <Property Name="Soa_RecordUpdatedBy" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Mst_DocumentMaster">
+          <Key>
+            <PropertyRef Name="Doc_Id" />
+          </Key>
+          <Property Name="Doc_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Doc_DocumentName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Doc_DocumentType" Type="Int16" />
+          <Property Name="Doc_ExpiryDateApplicable" Type="Boolean" />
+          <Property Name="Doc_Status" Type="Int16" />
+          <Property Name="Doc_RecordCreated" Type="DateTime" Precision="3" />
+          <Property Name="Doc_RecordUpdated" Type="DateTime" Precision="3" />
+          <Property Name="Doc_RecordCreatedBy" Type="Int32" />
+          <Property Name="Doc_RecordUpdatedBy" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Mst_Ornament">
+          <Key>
+            <PropertyRef Name="Orn_Id" />
+          </Key>
+          <Property Name="Orn_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Orn_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Orn_Product" Type="Int16" />
+          <Property Name="Orn_Status" Type="Int16" />
+          <Property Name="Orn_RecordCreated" Type="DateTime" Precision="3" />
+          <Property Name="Orn_RecordUpdated" Type="DateTime" Precision="3" />
+          <Property Name="Orn_RecordCreatedBy" Type="Int32" />
+          <Property Name="Orn_RecordUpdatedBy" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Mst_Reason">
+          <Key>
+            <PropertyRef Name="Re_No" />
+          </Key>
+          <Property Name="Re_No" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Re_Desc" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Re_Status" Type="Int16" />
+          <Property Name="Re_RecordCreated" Type="DateTime" Precision="3" />
+          <Property Name="Re_RecordUpdated" Type="DateTime" Precision="3" />
+          <Property Name="Re_RecordCreatedBy" Type="Int32" />
+          <Property Name="Re_RecordUpdatedBy" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Mst_AuditCheckList">
+          <Key>
+            <PropertyRef Name="Acl_Id" />
+          </Key>
+          <Property Name="Acl_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Acl_EffectiveDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Acl_Categoryofaudit" Type="Int16" Nullable="false" />
+          <Property Name="Acl_CheckPoint" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Acl_Status" Type="Int16" Nullable="false" />
+          <Property Name="Acl_RecordCreated" Type="DateTime" Precision="3" />
+          <Property Name="Acl_RecordUpdated" Type="DateTime" Precision="3" />
+          <Property Name="Acl_RecordCreatedBy" Type="Int32" />
+          <Property Name="Acl_RecordUpdatedBy" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Mst_GstMaster">
+          <Key>
+            <PropertyRef Name="Gst_RefId" />
+          </Key>
+          <Property Name="Gst_RefId" Type="Int32" Nullable="false" />
+          <Property Name="Gst_EffectiveFrom" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Gst_CGST" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="Gst_SGST" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="Gst_IGST" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="Gst_RecordCreated" Type="DateTime" Precision="3" />
+          <Property Name="Gst_RecordUpdated" Type="DateTime" Precision="3" />
+          <Property Name="Gst_RecordCreatedBy" Type="Int32" />
+          <Property Name="Gst_RecordUpdatedBy" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Mst_Charge">
+          <Key>
+            <PropertyRef Name="Chg_Id" />
+          </Key>
+          <Property Name="Chg_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Chg_Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Chg_ReferenceDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Chg_Status" Type="Int16" Nullable="false" />
+          <Property Name="Chg_RecordCreated" Type="DateTime" Precision="3" />
+          <Property Name="Chg_RecordUpdated" Type="DateTime" Precision="3" />
+          <Property Name="Chg_RecordCreatedBy" Type="Int32" />
+          <Property Name="Chg_RecordUpdatedBy" Type="Int32" />
+          <NavigationProperty Name="Mst_ChargeDetails" Relationship="MangalDBModel.FK_Mst_ChargeDetails_Mst_ChargeDetails" FromRole="Mst_Charge" ToRole="Mst_ChargeDetails" />
+        </EntityType>
+        <EntityType Name="Mst_ChargeDetails">
+          <Key>
+            <PropertyRef Name="Chgd_Id" />
+          </Key>
+          <Property Name="Chgd_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Chgd_ChgRefId" Type="Int32" Nullable="false" />
+          <Property Name="Chgd_LoanAmountGreater" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Chgd_LoanAmountLess" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Chgd_ChargesAmt" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Chgd_ChargeType" Type="Int16" />
+          <Property Name="Chg_RecordCreated" Type="DateTime" Precision="3" />
+          <Property Name="Chg_RecordUpdated" Type="DateTime" Precision="3" />
+          <Property Name="Chg_RecordCreatedBy" Type="Int32" />
+          <Property Name="Chg_RecordUpdatedBy" Type="Int32" />
+          <NavigationProperty Name="Mst_Charge" Relationship="MangalDBModel.FK_Mst_ChargeDetails_Mst_ChargeDetails" FromRole="Mst_ChargeDetails" ToRole="Mst_Charge" />
+        </EntityType>
+        <Association Name="FK_Mst_ChargeDetails_Mst_ChargeDetails">
+          <End Type="MangalDBModel.Mst_Charge" Role="Mst_Charge" Multiplicity="1" />
+          <End Type="MangalDBModel.Mst_ChargeDetails" Role="Mst_ChargeDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mst_Charge">
+              <PropertyRef Name="Chg_Id" />
+            </Principal>
+            <Dependent Role="Mst_ChargeDetails">
+              <PropertyRef Name="Chgd_ChgRefId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Mst_PenaltySlab">
+          <Key>
+            <PropertyRef Name="Ps_Id" />
+          </Key>
+          <Property Name="Ps_Id" Type="Int32" Nullable="false" />
+          <Property Name="Ps_Datewef" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Ps_Penalty" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Ps_Accounthead" Type="Int32" Nullable="false" />
+          <Property Name="Ps_RecordCreated" Type="DateTime" Precision="3" />
+          <Property Name="Ps_RecordUpdated" Type="DateTime" Precision="3" />
+          <Property Name="Ps_RecordCreatedBy" Type="Int32" />
+          <Property Name="Ps_RecordUpdatedBy" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Mst_PurityMaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PurityName" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="PurityType" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tblaccountmaster">
+          <Key>
+            <PropertyRef Name="AccountID" />
+          </Key>
+          <Property Name="AccountID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Alies" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="GPID" Type="Int32" Nullable="false" />
+          <Property Name="OpeningBalance" Type="Double" Nullable="false" />
+          <Property Name="DrCr" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PanNo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="InterestRate" Type="Double" Nullable="false" />
+          <Property Name="InterestMethod" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GroupCompany" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="BankAcNo" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="MICRNo" Type="Double" Nullable="false" />
+          <Property Name="AccountType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IFSNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AreaID" Type="Int32" Nullable="false" />
+          <Property Name="Telephone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Fax" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Suspended" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GSTIN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblGroupMaster">
+          <Key>
+            <PropertyRef Name="GPID" />
+          </Key>
+          <Property Name="GPID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GPName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GPType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PID" Type="Int32" Nullable="false" />
+          <Property Name="SID" Type="Int32" Nullable="false" />
+          <Property Name="PrintSchedule" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ScheduleNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Remark" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblPrimaryGroup">
+          <Key>
+            <PropertyRef Name="PgID" />
+          </Key>
+          <Property Name="PgID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PgName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MangalDBModelStoreContainer" CdmEntityContainer="MangalDBEntities">
+          <EntitySetMapping Name="tbl_Menu">
+            <EntityTypeMapping TypeName="MangalDBModel.tbl_Menu">
+              <MappingFragment StoreEntitySet="tbl_Menu">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+                <ScalarProperty Name="Item" ColumnName="Item" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ToolTip" ColumnName="ToolTip" />
+                <ScalarProperty Name="IconPath" ColumnName="IconPath" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="MyParent_ID" ColumnName="MyParent_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="u_userauthorization">
+            <EntityTypeMapping TypeName="MangalDBModel.u_userauthorization">
+              <MappingFragment StoreEntitySet="u_userauthorization">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="isVisible" ColumnName="isVisible" />
+                <ScalarProperty Name="isEdit" ColumnName="isEdit" />
+                <ScalarProperty Name="isSave" ColumnName="isSave" />
+                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+                <ScalarProperty Name="isView" ColumnName="isView" />
+                <ScalarProperty Name="isDefault" ColumnName="isDefault" />
+                <ScalarProperty Name="FormId" ColumnName="FormId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Payment">
+            <EntityTypeMapping TypeName="MangalDBModel.tbl_Payment">
+              <MappingFragment StoreEntitySet="tbl_Payment">
+                <ScalarProperty Name="paymentid" ColumnName="paymentid" />
+                <ScalarProperty Name="refeno" ColumnName="refeno" />
+                <ScalarProperty Name="refdate" ColumnName="refdate" />
+                <ScalarProperty Name="amt" ColumnName="amt" />
+                <ScalarProperty Name="balamt" ColumnName="balamt" />
+                <ScalarProperty Name="bankname" ColumnName="bankname" />
+                <ScalarProperty Name="branch" ColumnName="branch" />
+                <ScalarProperty Name="neftcheqno" ColumnName="neftcheqno" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_User">
+            <EntityTypeMapping TypeName="MangalDBModel.tbl_User">
+              <MappingFragment StoreEntitySet="tbl_User">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="UserCategory" ColumnName="UserCategory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_UserCategory">
+            <EntityTypeMapping TypeName="MangalDBModel.tbl_UserCategory">
+              <MappingFragment StoreEntitySet="tbl_UserCategory">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mst_City">
+            <EntityTypeMapping TypeName="MangalDBModel.Mst_City">
+              <MappingFragment StoreEntitySet="Mst_City">
+                <ScalarProperty Name="Ct_RecordUpdatedBy" ColumnName="Ct_RecordUpdatedBy" />
+                <ScalarProperty Name="Ct_RecordCreatedBy" ColumnName="Ct_RecordCreatedBy" />
+                <ScalarProperty Name="Ct_RecordUpdated" ColumnName="Ct_RecordUpdated" />
+                <ScalarProperty Name="Ct_RecordCreated" ColumnName="Ct_RecordCreated" />
+                <ScalarProperty Name="Ct_StateId" ColumnName="Ct_StateId" />
+                <ScalarProperty Name="Ct_Desc" ColumnName="Ct_Desc" />
+                <ScalarProperty Name="Ct_Id" ColumnName="Ct_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mst_Country">
+            <EntityTypeMapping TypeName="MangalDBModel.Mst_Country">
+              <MappingFragment StoreEntitySet="Mst_Country">
+                <ScalarProperty Name="Cn_RecordUpdatedBy" ColumnName="Cn_RecordUpdatedBy" />
+                <ScalarProperty Name="Cn_RecordCreatedBy" ColumnName="Cn_RecordCreatedBy" />
+                <ScalarProperty Name="Cn_RecordUpdated" ColumnName="Cn_RecordUpdated" />
+                <ScalarProperty Name="Cn_RecordCreated" ColumnName="Cn_RecordCreated" />
+                <ScalarProperty Name="Cn_Name" ColumnName="Cn_Name" />
+                <ScalarProperty Name="Cn_Id" ColumnName="Cn_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mst_PinCode">
+            <EntityTypeMapping TypeName="MangalDBModel.Mst_PinCode">
+              <MappingFragment StoreEntitySet="Mst_PinCode">
+                <ScalarProperty Name="Pc_RecordUpdatedBy" ColumnName="Pc_RecordUpdatedBy" />
+                <ScalarProperty Name="Pc_RecordCreatedBy" ColumnName="Pc_RecordCreatedBy" />
+                <ScalarProperty Name="Pc_RecordUpdated" ColumnName="Pc_RecordUpdated" />
+                <ScalarProperty Name="Pc_RecordCreated" ColumnName="Pc_RecordCreated" />
+                <ScalarProperty Name="Pc_ZoneId" ColumnName="Pc_ZoneId" />
+                <ScalarProperty Name="Pc_CityId" ColumnName="Pc_CityId" />
+                <ScalarProperty Name="Pc_AreaName" ColumnName="Pc_AreaName" />
+                <ScalarProperty Name="Pc_Desc" ColumnName="Pc_Desc" />
+                <ScalarProperty Name="Pc_Id" ColumnName="Pc_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mst_State">
+            <EntityTypeMapping TypeName="MangalDBModel.Mst_State">
+              <MappingFragment StoreEntitySet="Mst_State">
+                <ScalarProperty Name="St_RecordUpdatedBy" ColumnName="St_RecordUpdatedBy" />
+                <ScalarProperty Name="St_RecordCreatedBy" ColumnName="St_RecordCreatedBy" />
+                <ScalarProperty Name="St_RecordUpdated" ColumnName="St_RecordUpdated" />
+                <ScalarProperty Name="St_RecordCreated" ColumnName="St_RecordCreated" />
+                <ScalarProperty Name="St_CountryId" ColumnName="St_CountryId" />
+                <ScalarProperty Name="St_Desc" ColumnName="St_Desc" />
+                <ScalarProperty Name="St_Code" ColumnName="St_Code" />
+                <ScalarProperty Name="St_Id" ColumnName="St_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mst_Zone">
+            <EntityTypeMapping TypeName="MangalDBModel.Mst_Zone">
+              <MappingFragment StoreEntitySet="Mst_Zone">
+                <ScalarProperty Name="Zne_RecordUpdatedBy" ColumnName="Zne_RecordUpdatedBy" />
+                <ScalarProperty Name="Zne_RecordCreatedBy" ColumnName="Zne_RecordCreatedBy" />
+                <ScalarProperty Name="Zne_RecordUpdated" ColumnName="Zne_RecordUpdated" />
+                <ScalarProperty Name="Zne_RecordCreated" ColumnName="Zne_RecordCreated" />
+                <ScalarProperty Name="Zne_Desc" ColumnName="Zne_Desc" />
+                <ScalarProperty Name="Zne_No" ColumnName="Zne_No" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mst_SourceofApplication">
+            <EntityTypeMapping TypeName="MangalDBModel.Mst_SourceofApplication">
+              <MappingFragment StoreEntitySet="Mst_SourceofApplication">
+                <ScalarProperty Name="Soa_RecordUpdatedBy" ColumnName="Soa_RecordUpdatedBy" />
+                <ScalarProperty Name="Soa_RecordCreatedBy" ColumnName="Soa_RecordCreatedBy" />
+                <ScalarProperty Name="Soa_RecordUpdated" ColumnName="Soa_RecordUpdated" />
+                <ScalarProperty Name="Soa_RecordCreated" ColumnName="Soa_RecordCreated" />
+                <ScalarProperty Name="Soa_Status" ColumnName="Soa_Status" />
+                <ScalarProperty Name="Soa_Category" ColumnName="Soa_Category" />
+                <ScalarProperty Name="Soa_Name" ColumnName="Soa_Name" />
+                <ScalarProperty Name="Soa_Id" ColumnName="Soa_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mst_DocumentMaster">
+            <EntityTypeMapping TypeName="MangalDBModel.Mst_DocumentMaster">
+              <MappingFragment StoreEntitySet="Mst_DocumentMaster">
+                <ScalarProperty Name="Doc_RecordUpdatedBy" ColumnName="Doc_RecordUpdatedBy" />
+                <ScalarProperty Name="Doc_RecordCreatedBy" ColumnName="Doc_RecordCreatedBy" />
+                <ScalarProperty Name="Doc_RecordUpdated" ColumnName="Doc_RecordUpdated" />
+                <ScalarProperty Name="Doc_RecordCreated" ColumnName="Doc_RecordCreated" />
+                <ScalarProperty Name="Doc_Status" ColumnName="Doc_Status" />
+                <ScalarProperty Name="Doc_ExpiryDateApplicable" ColumnName="Doc_ExpiryDateApplicable" />
+                <ScalarProperty Name="Doc_DocumentType" ColumnName="Doc_DocumentType" />
+                <ScalarProperty Name="Doc_DocumentName" ColumnName="Doc_DocumentName" />
+                <ScalarProperty Name="Doc_Id" ColumnName="Doc_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mst_Ornament">
+            <EntityTypeMapping TypeName="MangalDBModel.Mst_Ornament">
+              <MappingFragment StoreEntitySet="Mst_Ornament">
+                <ScalarProperty Name="Orn_RecordUpdatedBy" ColumnName="Orn_RecordUpdatedBy" />
+                <ScalarProperty Name="Orn_RecordCreatedBy" ColumnName="Orn_RecordCreatedBy" />
+                <ScalarProperty Name="Orn_RecordUpdated" ColumnName="Orn_RecordUpdated" />
+                <ScalarProperty Name="Orn_RecordCreated" ColumnName="Orn_RecordCreated" />
+                <ScalarProperty Name="Orn_Status" ColumnName="Orn_Status" />
+                <ScalarProperty Name="Orn_Product" ColumnName="Orn_Product" />
+                <ScalarProperty Name="Orn_Name" ColumnName="Orn_Name" />
+                <ScalarProperty Name="Orn_Id" ColumnName="Orn_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mst_Reason">
+            <EntityTypeMapping TypeName="MangalDBModel.Mst_Reason">
+              <MappingFragment StoreEntitySet="Mst_Reason">
+                <ScalarProperty Name="Re_RecordUpdatedBy" ColumnName="Re_RecordUpdatedBy" />
+                <ScalarProperty Name="Re_RecordCreatedBy" ColumnName="Re_RecordCreatedBy" />
+                <ScalarProperty Name="Re_RecordUpdated" ColumnName="Re_RecordUpdated" />
+                <ScalarProperty Name="Re_RecordCreated" ColumnName="Re_RecordCreated" />
+                <ScalarProperty Name="Re_Status" ColumnName="Re_Status" />
+                <ScalarProperty Name="Re_Desc" ColumnName="Re_Desc" />
+                <ScalarProperty Name="Re_No" ColumnName="Re_No" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mst_AuditCheckList">
+            <EntityTypeMapping TypeName="MangalDBModel.Mst_AuditCheckList">
+              <MappingFragment StoreEntitySet="Mst_AuditCheckList">
+                <ScalarProperty Name="Acl_RecordUpdatedBy" ColumnName="Acl_RecordUpdatedBy" />
+                <ScalarProperty Name="Acl_RecordCreatedBy" ColumnName="Acl_RecordCreatedBy" />
+                <ScalarProperty Name="Acl_RecordUpdated" ColumnName="Acl_RecordUpdated" />
+                <ScalarProperty Name="Acl_RecordCreated" ColumnName="Acl_RecordCreated" />
+                <ScalarProperty Name="Acl_Status" ColumnName="Acl_Status" />
+                <ScalarProperty Name="Acl_CheckPoint" ColumnName="Acl_CheckPoint" />
+                <ScalarProperty Name="Acl_Categoryofaudit" ColumnName="Acl_Categoryofaudit" />
+                <ScalarProperty Name="Acl_EffectiveDate" ColumnName="Acl_EffectiveDate" />
+                <ScalarProperty Name="Acl_Id" ColumnName="Acl_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mst_GstMaster">
+            <EntityTypeMapping TypeName="MangalDBModel.Mst_GstMaster">
+              <MappingFragment StoreEntitySet="Mst_GstMaster">
+                <ScalarProperty Name="Gst_RecordUpdatedBy" ColumnName="Gst_RecordUpdatedBy" />
+                <ScalarProperty Name="Gst_RecordCreatedBy" ColumnName="Gst_RecordCreatedBy" />
+                <ScalarProperty Name="Gst_RecordUpdated" ColumnName="Gst_RecordUpdated" />
+                <ScalarProperty Name="Gst_RecordCreated" ColumnName="Gst_RecordCreated" />
+                <ScalarProperty Name="Gst_IGST" ColumnName="Gst_IGST" />
+                <ScalarProperty Name="Gst_SGST" ColumnName="Gst_SGST" />
+                <ScalarProperty Name="Gst_CGST" ColumnName="Gst_CGST" />
+                <ScalarProperty Name="Gst_EffectiveFrom" ColumnName="Gst_EffectiveFrom" />
+                <ScalarProperty Name="Gst_RefId" ColumnName="Gst_RefId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mst_Charge">
+            <EntityTypeMapping TypeName="MangalDBModel.Mst_Charge">
+              <MappingFragment StoreEntitySet="Mst_Charge">
+                <ScalarProperty Name="Chg_RecordUpdatedBy" ColumnName="Chg_RecordUpdatedBy" />
+                <ScalarProperty Name="Chg_RecordCreatedBy" ColumnName="Chg_RecordCreatedBy" />
+                <ScalarProperty Name="Chg_RecordUpdated" ColumnName="Chg_RecordUpdated" />
+                <ScalarProperty Name="Chg_RecordCreated" ColumnName="Chg_RecordCreated" />
+                <ScalarProperty Name="Chg_Status" ColumnName="Chg_Status" />
+                <ScalarProperty Name="Chg_ReferenceDate" ColumnName="Chg_ReferenceDate" />
+                <ScalarProperty Name="Chg_Name" ColumnName="Chg_Name" />
+                <ScalarProperty Name="Chg_Id" ColumnName="Chg_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mst_ChargeDetails">
+            <EntityTypeMapping TypeName="MangalDBModel.Mst_ChargeDetails">
+              <MappingFragment StoreEntitySet="Mst_ChargeDetails">
+                <ScalarProperty Name="Chg_RecordUpdatedBy" ColumnName="Chg_RecordUpdatedBy" />
+                <ScalarProperty Name="Chg_RecordCreatedBy" ColumnName="Chg_RecordCreatedBy" />
+                <ScalarProperty Name="Chg_RecordUpdated" ColumnName="Chg_RecordUpdated" />
+                <ScalarProperty Name="Chg_RecordCreated" ColumnName="Chg_RecordCreated" />
+                <ScalarProperty Name="Chgd_ChargeType" ColumnName="Chgd_ChargeType" />
+                <ScalarProperty Name="Chgd_ChargesAmt" ColumnName="Chgd_ChargesAmt" />
+                <ScalarProperty Name="Chgd_LoanAmountLess" ColumnName="Chgd_LoanAmountLess" />
+                <ScalarProperty Name="Chgd_LoanAmountGreater" ColumnName="Chgd_LoanAmountGreater" />
+                <ScalarProperty Name="Chgd_ChgRefId" ColumnName="Chgd_ChgRefId" />
+                <ScalarProperty Name="Chgd_Id" ColumnName="Chgd_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mst_PenaltySlab">
+            <EntityTypeMapping TypeName="MangalDBModel.Mst_PenaltySlab">
+              <MappingFragment StoreEntitySet="Mst_PenaltySlab">
+                <ScalarProperty Name="Ps_RecordUpdatedBy" ColumnName="Ps_RecordUpdatedBy" />
+                <ScalarProperty Name="Ps_RecordCreatedBy" ColumnName="Ps_RecordCreatedBy" />
+                <ScalarProperty Name="Ps_RecordUpdated" ColumnName="Ps_RecordUpdated" />
+                <ScalarProperty Name="Ps_RecordCreated" ColumnName="Ps_RecordCreated" />
+                <ScalarProperty Name="Ps_Accounthead" ColumnName="Ps_Accounthead" />
+                <ScalarProperty Name="Ps_Penalty" ColumnName="Ps_Penalty" />
+                <ScalarProperty Name="Ps_Datewef" ColumnName="Ps_Datewef" />
+                <ScalarProperty Name="Ps_Id" ColumnName="Ps_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mst_PurityMaster">
+            <EntityTypeMapping TypeName="MangalDBModel.Mst_PurityMaster">
+              <MappingFragment StoreEntitySet="Mst_PurityMaster">
+                <ScalarProperty Name="PurityType" ColumnName="PurityType" />
+                <ScalarProperty Name="PurityName" ColumnName="PurityName" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblaccountmasters">
+            <EntityTypeMapping TypeName="MangalDBModel.tblaccountmaster">
+              <MappingFragment StoreEntitySet="tblaccountmaster">
+                <ScalarProperty Name="GSTIN" ColumnName="GSTIN" />
+                <ScalarProperty Name="Suspended" ColumnName="Suspended" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="AreaID" ColumnName="AreaID" />
+                <ScalarProperty Name="IFSNo" ColumnName="IFSNo" />
+                <ScalarProperty Name="AccountType" ColumnName="AccountType" />
+                <ScalarProperty Name="MICRNo" ColumnName="MICRNo" />
+                <ScalarProperty Name="BankAcNo" ColumnName="BankAcNo" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="GroupCompany" ColumnName="GroupCompany" />
+                <ScalarProperty Name="InterestMethod" ColumnName="InterestMethod" />
+                <ScalarProperty Name="InterestRate" ColumnName="InterestRate" />
+                <ScalarProperty Name="PanNo" ColumnName="PanNo" />
+                <ScalarProperty Name="DrCr" ColumnName="DrCr" />
+                <ScalarProperty Name="OpeningBalance" ColumnName="OpeningBalance" />
+                <ScalarProperty Name="GPID" ColumnName="GPID" />
+                <ScalarProperty Name="Alies" ColumnName="Alies" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblGroupMasters">
+            <EntityTypeMapping TypeName="MangalDBModel.tblGroupMaster">
+              <MappingFragment StoreEntitySet="tblGroupMaster">
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="ScheduleNo" ColumnName="ScheduleNo" />
+                <ScalarProperty Name="PrintSchedule" ColumnName="PrintSchedule" />
+                <ScalarProperty Name="SID" ColumnName="SID" />
+                <ScalarProperty Name="PID" ColumnName="PID" />
+                <ScalarProperty Name="GPType" ColumnName="GPType" />
+                <ScalarProperty Name="GPName" ColumnName="GPName" />
+                <ScalarProperty Name="GPID" ColumnName="GPID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPrimaryGroups">
+            <EntityTypeMapping TypeName="MangalDBModel.tblPrimaryGroup">
+              <MappingFragment StoreEntitySet="tblPrimaryGroup">
+                <ScalarProperty Name="PgName" ColumnName="PgName" />
+                <ScalarProperty Name="PgID" ColumnName="PgID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

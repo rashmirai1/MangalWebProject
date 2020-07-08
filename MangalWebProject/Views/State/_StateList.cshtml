@@ -1,0 +1,30 @@
+﻿@model IList<MangalWebProject.Models.Entity.Mst_State>
+@using MangalWebProject.Models.Entity
+<div class="modal-content">
+    <div class="modal-body" style="height:inherit; overflow:auto;">
+        <div class="panel-body panel-no-padding" style="height:inherit; overflow:auto;">
+            <div id="demo">
+                <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered table-hover table-fixed-header m0" id="example">
+                    <thead>
+                        <tr>
+                            <th>State Code</th>
+                            <th>State Name</th>
+                            <th>Country</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (Mst_State item in Model)
+                        {
+                            <tr class="gradeX" onclick='window.document.location="/State/GetStateById?ID=@item.St_Id"'>
+                                <td>@item.St_Code</td>
+                                <td>@item.St_Desc</td>
+                                <td>@item.Mst_Country.Cn_Name</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div><!-- /.modal-content -->
+

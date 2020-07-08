@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bb91e15e0b5a45ccba0db49b619d7816" Name="Diagram1">
+        <EntityTypeShape EntityType="MangalDBModel.tbl_Menu" Width="1.5" PointX="7.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MangalDBModel.u_userauthorization" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MangalDBModel.tbl_Payment" Width="1.5" PointX="4.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MangalDBModel.tbl_User" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MangalDBModel.tbl_UserCategory" Width="1.5" PointX="9.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MangalDBModel.Mst_City" Width="1.5" PointX="14.875" PointY="8.125" />
+        <EntityTypeShape EntityType="MangalDBModel.Mst_Country" Width="1.5" PointX="10.375" PointY="8.375" />
+        <EntityTypeShape EntityType="MangalDBModel.Mst_PinCode" Width="1.5" PointX="17.125" PointY="8" />
+        <EntityTypeShape EntityType="MangalDBModel.Mst_State" Width="1.5" PointX="12.625" PointY="8.125" />
+        <EntityTypeShape EntityType="MangalDBModel.Mst_Zone" Width="1.5" PointX="14.875" PointY="4.375" />
+        <AssociationConnector Association="MangalDBModel.FK_Mst_City_Mst_City" />
+        <AssociationConnector Association="MangalDBModel.FK_Mst_PinCode_Mst_PinCode" />
+        <AssociationConnector Association="MangalDBModel.FK_Mst_State_Mst_Country" />
+        <AssociationConnector Association="MangalDBModel.FK_Zoneid" />
+        <EntityTypeShape EntityType="MangalDBModel.Mst_SourceofApplication" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MangalDBModel.Mst_DocumentMaster" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="MangalDBModel.Mst_Ornament" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="MangalDBModel.Mst_Reason" Width="1.5" PointX="3.375" PointY="4.75" />
+        <EntityTypeShape EntityType="MangalDBModel.Mst_AuditCheckList" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="MangalDBModel.Mst_GstMaster" Width="1.5" PointX="7.375" PointY="10.75" />
+        <EntityTypeShape EntityType="MangalDBModel.Mst_Charge" Width="1.5" PointX="9.375" PointY="13.125" />
+        <EntityTypeShape EntityType="MangalDBModel.Mst_ChargeDetails" Width="1.5" PointX="11.625" PointY="13" />
+        <AssociationConnector Association="MangalDBModel.FK_Mst_ChargeDetails_Mst_ChargeDetails" />
+        <EntityTypeShape EntityType="MangalDBModel.Mst_PenaltySlab" Width="1.5" PointX="12.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MangalDBModel.Mst_PurityMaster" Width="1.5" PointX="14.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MangalDBModel.tblaccountmaster" Width="1.5" PointX="0.75" PointY="14.75" />
+        <EntityTypeShape EntityType="MangalDBModel.tblGroupMaster" Width="1.5" PointX="2.75" PointY="14.75" />
+        <EntityTypeShape EntityType="MangalDBModel.tblPrimaryGroup" Width="1.5" PointX="4.75" PointY="14.75" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
