@@ -33,6 +33,7 @@
         <EntityTypeShape EntityType="MangalDBModel.tblaccountmaster" Width="1.5" PointX="0.75" PointY="14.75" />
         <EntityTypeShape EntityType="MangalDBModel.tblGroupMaster" Width="1.5" PointX="2.75" PointY="14.75" />
         <EntityTypeShape EntityType="MangalDBModel.tblPrimaryGroup" Width="1.5" PointX="4.75" PointY="14.75" />
+        <EntityTypeShape EntityType="MangalDBModel.Mst_SchemeMaster" Width="1.5" PointX="14.375" PointY="12.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -48,5 +48,6 @@ namespace MangalWebProject.Models.Entity
         public virtual DbSet<tblaccountmaster> tblaccountmasters { get; set; }
         public virtual DbSet<tblGroupMaster> tblGroupMasters { get; set; }
         public virtual DbSet<tblPrimaryGroup> tblPrimaryGroups { get; set; }
+        public virtual DbSet<Mst_SchemeMaster> Mst_SchemeMaster { get; set; }
     }
 }

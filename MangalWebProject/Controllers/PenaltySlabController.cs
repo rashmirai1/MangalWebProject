@@ -48,9 +48,9 @@ namespace MangalWebProject.Controllers
             Mst_PenaltySlab tblPenaltySlab = new Mst_PenaltySlab();
             try
             {
-                penalty.ID = dd._context.Mst_PenaltySlab.Any() ? dd._context.Mst_PenaltySlab.Max(m => m.Ps_Id) + 1 : 1;
                 if (penalty.EditID <= 0)
                 {
+                    penalty.ID = dd._context.Mst_PenaltySlab.Any() ? dd._context.Mst_PenaltySlab.Max(m => m.Ps_Id) + 1 : 1;
                     tblPenaltySlab.Ps_Id = penalty.ID;
                     tblPenaltySlab.Ps_RecordCreated = DateTime.Now;
                     tblPenaltySlab.Ps_RecordCreatedBy = penalty.CreatedBy;
@@ -81,11 +81,12 @@ namespace MangalWebProject.Controllers
         {
             string operation = Session["Operation"].ToString();
             ButtonVisiblity(operation);
+            ViewBag.AccountHeadList = new SelectList(dd._context.tblaccountmasters.ToList(), "AccountID", "Name");
             Mst_PenaltySlab tblPenalty = dd._context.Mst_PenaltySlab.Where(x => x.Ps_Id == ID).FirstOrDefault();
             PenaltySlabViewModel penalty = new PenaltySlabViewModel();
             penalty.ID = tblPenalty.Ps_Id;
             penalty.EditID = tblPenalty.Ps_Id;
-            penalty.Datewef = tblPenalty.Ps_Datewef.ToString();
+            penalty.Datewef = tblPenalty.Ps_Datewef.ToString("dd/MM/yyyy");
             penalty.PenaltyAmount = tblPenalty.Ps_Penalty;
             penalty.AccountHead = tblPenalty.Ps_Accounthead;
             penalty.operation = operation;
@@ -122,14 +123,14 @@ namespace MangalWebProject.Controllers
             foreach (var item in tablelist)
             {
                 model = new PenaltySlabViewModel();
-                model.Datewef = item.Ps_Datewef.ToString();
+                model.Datewef = item.Ps_Datewef.ToString("dd/MM/yyyy");
                 model.EditID = item.Ps_Id;
                 model.ID = item.Ps_Id;
                 model.PenaltyAmount = item.Ps_Penalty;
                 model.AccountHeadStr = dd._context.tblaccountmasters.Where(x => x.AccountID == item.Ps_Accounthead).Select(x => x.Name).FirstOrDefault();
                 list.Add(model);
             }
-            return PartialView("_PenaltySlabList", list);
+            return PartialView("_PenaltySlablist", list);
         }
     }
 }

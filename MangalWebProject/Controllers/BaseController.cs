@@ -9,8 +9,6 @@ namespace MangalWebProject.Controllers
     public class BaseController : Controller
     {
         // GET: Base
-
-
         public ActionResult Menu()
         {
             return PartialView("Menu");

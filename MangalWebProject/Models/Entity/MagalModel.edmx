@@ -158,6 +158,35 @@
           <Property Name="Re_RecordCreatedBy" Type="int" />
           <Property Name="Re_RecordUpdatedBy" Type="int" />
         </EntityType>
+        <EntityType Name="Mst_SchemeMaster">
+          <Key>
+            <PropertyRef Name="SchemeId" />
+          </Key>
+          <Property Name="SchemeId" Type="int" Nullable="false" />
+          <Property Name="Product" Type="smallint" Nullable="false" />
+          <Property Name="SchemeName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Purity" Type="int" Nullable="false" />
+          <Property Name="SchemeType" Type="smallint" Nullable="false" />
+          <Property Name="Frequency" Type="smallint" Nullable="false" />
+          <Property Name="MinTenure" Type="decimal" Precision="3" Scale="0" />
+          <Property Name="MaxTenure" Type="decimal" Precision="3" Scale="0" />
+          <Property Name="MinLoanAmount" Type="decimal" Precision="9" Scale="2" />
+          <Property Name="MaxLoanAmount" Type="decimal" Precision="9" Scale="2" />
+          <Property Name="MinLTVPerc" Type="decimal" Precision="4" Scale="2" />
+          <Property Name="MaxLTVPerc" Type="decimal" Precision="4" Scale="2" />
+          <Property Name="MinRoiPerc" Type="decimal" Precision="4" Scale="2" />
+          <Property Name="MaxRoiPerc" Type="decimal" Precision="4" Scale="2" />
+          <Property Name="GracePeriod" Type="int" />
+          <Property Name="EffectiveRoiPerc" Type="decimal" Precision="4" Scale="2" />
+          <Property Name="LockInPeriod" Type="int" />
+          <Property Name="ProcessingFeeType" Type="smallint" />
+          <Property Name="ProcessingCharges" Type="decimal" Precision="4" Scale="0" />
+          <Property Name="Status" Type="smallint" />
+          <Property Name="RecordCreated" Type="datetime" />
+          <Property Name="RecordUpdated" Type="datetime" />
+          <Property Name="RecordCreatedBy" Type="int" />
+          <Property Name="RecordUpdatedBy" Type="int" />
+        </EntityType>
         <EntityType Name="Mst_SourceofApplication">
           <Key>
             <PropertyRef Name="Soa_Id" />
@@ -401,6 +430,7 @@ warning 6002: The table/view 'MangalDB.dbo.tbl_UserCategory' does not have a pri
           <EntitySet Name="Mst_PinCode" EntityType="Self.Mst_PinCode" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mst_PurityMaster" EntityType="Self.Mst_PurityMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mst_Reason" EntityType="Self.Mst_Reason" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mst_SchemeMaster" EntityType="Self.Mst_SchemeMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mst_SourceofApplication" EntityType="Self.Mst_SourceofApplication" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mst_State" EntityType="Self.Mst_State" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mst_Zone" EntityType="Self.Mst_Zone" Schema="dbo" store:Type="Tables" />
@@ -592,6 +622,7 @@ warning 6002: The table/view 'MangalDB.dbo.tbl_UserCategory' does not have a pri
           <EntitySet Name="tblaccountmasters" EntityType="MangalDBModel.tblaccountmaster" />
           <EntitySet Name="tblGroupMasters" EntityType="MangalDBModel.tblGroupMaster" />
           <EntitySet Name="tblPrimaryGroups" EntityType="MangalDBModel.tblPrimaryGroup" />
+          <EntitySet Name="Mst_SchemeMaster" EntityType="MangalDBModel.Mst_SchemeMaster" />
           </EntityContainer>
         <EntityType Name="Mst_City">
           <Key>
@@ -899,6 +930,35 @@ warning 6002: The table/view 'MangalDB.dbo.tbl_UserCategory' does not have a pri
           </Key>
           <Property Name="PgID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PgName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Mst_SchemeMaster">
+          <Key>
+            <PropertyRef Name="SchemeId" />
+          </Key>
+          <Property Name="SchemeId" Type="Int32" Nullable="false" />
+          <Property Name="Product" Type="Int16" Nullable="false" />
+          <Property Name="SchemeName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Purity" Type="Int32" Nullable="false" />
+          <Property Name="SchemeType" Type="Int16" Nullable="false" />
+          <Property Name="Frequency" Type="Int16" Nullable="false" />
+          <Property Name="MinTenure" Type="Decimal" Precision="3" Scale="0" />
+          <Property Name="MaxTenure" Type="Decimal" Precision="3" Scale="0" />
+          <Property Name="MinLoanAmount" Type="Decimal" Precision="9" Scale="2" />
+          <Property Name="MaxLoanAmount" Type="Decimal" Precision="9" Scale="2" />
+          <Property Name="MinLTVPerc" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="MaxLTVPerc" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="MinRoiPerc" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="MaxRoiPerc" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="GracePeriod" Type="Int32" />
+          <Property Name="EffectiveRoiPerc" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="LockInPeriod" Type="Int32" />
+          <Property Name="ProcessingFeeType" Type="Int16" />
+          <Property Name="ProcessingCharges" Type="Decimal" Precision="4" Scale="0" />
+          <Property Name="Status" Type="Int16" />
+          <Property Name="RecordCreated" Type="DateTime" Precision="3" />
+          <Property Name="RecordUpdated" Type="DateTime" Precision="3" />
+          <Property Name="RecordCreatedBy" Type="Int32" />
+          <Property Name="RecordUpdatedBy" Type="Int32" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -1243,6 +1303,36 @@ warning 6002: The table/view 'MangalDB.dbo.tbl_UserCategory' does not have a pri
               <MappingFragment StoreEntitySet="tblPrimaryGroup">
                 <ScalarProperty Name="PgName" ColumnName="PgName" />
                 <ScalarProperty Name="PgID" ColumnName="PgID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mst_SchemeMaster">
+            <EntityTypeMapping TypeName="MangalDBModel.Mst_SchemeMaster">
+              <MappingFragment StoreEntitySet="Mst_SchemeMaster">
+                <ScalarProperty Name="RecordUpdatedBy" ColumnName="RecordUpdatedBy" />
+                <ScalarProperty Name="RecordCreatedBy" ColumnName="RecordCreatedBy" />
+                <ScalarProperty Name="RecordUpdated" ColumnName="RecordUpdated" />
+                <ScalarProperty Name="RecordCreated" ColumnName="RecordCreated" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ProcessingCharges" ColumnName="ProcessingCharges" />
+                <ScalarProperty Name="ProcessingFeeType" ColumnName="ProcessingFeeType" />
+                <ScalarProperty Name="LockInPeriod" ColumnName="LockInPeriod" />
+                <ScalarProperty Name="EffectiveRoiPerc" ColumnName="EffectiveRoiPerc" />
+                <ScalarProperty Name="GracePeriod" ColumnName="GracePeriod" />
+                <ScalarProperty Name="MaxRoiPerc" ColumnName="MaxRoiPerc" />
+                <ScalarProperty Name="MinRoiPerc" ColumnName="MinRoiPerc" />
+                <ScalarProperty Name="MaxLTVPerc" ColumnName="MaxLTVPerc" />
+                <ScalarProperty Name="MinLTVPerc" ColumnName="MinLTVPerc" />
+                <ScalarProperty Name="MaxLoanAmount" ColumnName="MaxLoanAmount" />
+                <ScalarProperty Name="MinLoanAmount" ColumnName="MinLoanAmount" />
+                <ScalarProperty Name="MaxTenure" ColumnName="MaxTenure" />
+                <ScalarProperty Name="MinTenure" ColumnName="MinTenure" />
+                <ScalarProperty Name="Frequency" ColumnName="Frequency" />
+                <ScalarProperty Name="SchemeType" ColumnName="SchemeType" />
+                <ScalarProperty Name="Purity" ColumnName="Purity" />
+                <ScalarProperty Name="SchemeName" ColumnName="SchemeName" />
+                <ScalarProperty Name="Product" ColumnName="Product" />
+                <ScalarProperty Name="SchemeId" ColumnName="SchemeId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

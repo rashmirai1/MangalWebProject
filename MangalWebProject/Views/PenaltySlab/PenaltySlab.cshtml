@@ -5,10 +5,11 @@
 }
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css" />
 
-@using (Ajax.BeginForm("", "", new AjaxOptions { OnSuccess = "OnSuccess", OnFailure = "OnFailure" }))
+@using (Ajax.BeginForm("", "", new AjaxOptions { }))
 {
     @Html.AntiForgeryToken()
     @Html.HiddenFor(model => model.ID, new { @id = "ItemID" })
+    @Html.HiddenFor(m => m.EditID, new { @EditId = "HiddenEditID" })
     @Html.HiddenFor(m => m.EditID)
     <header id="topbar" class="affix">
         <div class="col-md-5 col-sm-4 col-xs-12">
@@ -58,7 +59,7 @@
                                         <div class="form-group">
                                             <label class="col-lg-2 col-md-2 col-sm-3 col-xs-12 control-label">Date Wef<span class="text-danger"> * </span></label>
                                             <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
-                                                @Html.EditorFor(model => model.Datewef, new { htmlAttributes = new { @class = "form-control", @placeholder = "Date Wef"} })
+                                                @Html.EditorFor(model => model.Datewef, new { htmlAttributes = new { @class = "form-control", @placeholder = "Date Wef",@autocomplete="Off"} })
                                                 @*@Html.ValidationMessageFor(model => model.Datewef, "", new { @class = "text-danger" })*@
                                             </div>
                                         </div>
@@ -68,7 +69,7 @@
                                         <div class="form-group">
                                             <label class="col-lg-2 col-md-2 col-sm-3 col-xs-12 control-label">Penalty<span class="text-danger"> * </span></label>
                                             <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
-                                                @Html.EditorFor(model => model.PenaltyAmount, new { htmlAttributes = new { @class = "form-control", @placeholder = "Penalty",@maxlength="4", @onkeypress = "return event.charCode == 46 ||event.keyCode == 37 || (event.charCode >= 48 && event.charCode <= 57)" } })
+                                                @Html.EditorFor(model => model.PenaltyAmount, new { htmlAttributes = new { @class = "form-control", @placeholder = "Penalty",@maxlength="4", @onkeypress = "return event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)" } })
                                                 @Html.ValidationMessageFor(model => model.PenaltyAmount, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
@@ -133,20 +134,28 @@
                 $("#Datewef").focus();
                 return;
             }
-            //var CategoryAudit = $("#CategoryAudit").val();
-            //if (CategoryAudit == "") {
-            //    $("#CustomErr").text("Please Select Category Audit");
-            //    $("#CategoryAudit").focus();
-            //    return;
-            //}
+            var PenaltyAmount = $("#PenaltyAmount").val();
+            if (PenaltyAmount == "0.00") {
+                $("#CustomErrr").text("Please Enter Penalty Amount");
+                $("#PenaltyAmount").focus();
+                return;
+            }
+
+            var AccountHead = $("#AccountHead").val();
+            if (AccountHead == "") {
+                $("#CustomErrr").text("Please Select Account Head");
+                $("#AccountHead").focus();
+                return;
+            }
 
             $("#btn_save").prop("disabled", true);
             var PenaltyViewModel = {};
 
             PenaltyViewModel.ID = $('#ItemID').val();
-            PenaltyViewModel.EffectiveDate = $('#Datewef').val();
-            PenaltyViewModel.CategoryAudit = $('#Penalty').val();
-            PenaltyViewModel.AuditCheckPoint = $('#AccoundHead').val();
+            PenaltyViewModel.EditID = $('#EditID').val();
+            PenaltyViewModel.Datewef = $('#Datewef').val();
+            PenaltyViewModel.PenaltyAmount = $('#PenaltyAmount').val();
+            PenaltyViewModel.AccountHead = $('#AccountHead').val();
 
             $.ajax({
                 type: "POST",
