@@ -11,6 +11,7 @@ namespace MangalWebProject.Controllers
 {
     public class ChargeController : BaseController
     {
+        //date
         DataManager dd = new DataManager();
 
         #region Charge
