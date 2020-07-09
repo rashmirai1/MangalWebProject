@@ -15,6 +15,7 @@ namespace MangalWebProject.Controllers
 
         [HttpPost]
         //[ValidateAntiForgeryToken]
+        //swamini123456
         public JsonResult CreateEdit(CityViewModel city)
         {
             city.CreatedBy = Convert.ToInt32(Session["UserLoginId"]);
