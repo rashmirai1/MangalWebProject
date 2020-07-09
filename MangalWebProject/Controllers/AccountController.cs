@@ -17,7 +17,7 @@ namespace MangalWebProject.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
+        //rashmi
         public AccountController()
         {
         }
