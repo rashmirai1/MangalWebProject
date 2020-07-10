@@ -41,7 +41,6 @@ namespace MangalWebProject.Controllers
                 }
                 tblSchemeMaster.Product = scheme.Product;
                 tblSchemeMaster.SchemeName = scheme.SchemeName;
-                //tblSchemeMaster.Purity = scheme.Purity;
                 tblSchemeMaster.SchemeType = scheme.SchemeType;
                 tblSchemeMaster.Frequency = scheme.Frequency;
                 tblSchemeMaster.MinTenure = scheme.MinTenure;
@@ -61,6 +60,30 @@ namespace MangalWebProject.Controllers
                 tblSchemeMaster.RecordUpdated = DateTime.Now;
                 tblSchemeMaster.RecordUpdatedBy = scheme.UpdatedBy;
                 dd._context.SaveChanges();
+
+                int schemeid = dd._context.Mst_SchemeMaster.Max(x => x.SchemeId);
+                if (scheme.Purity == null)
+                {
+                    scheme.Purity = (List<int>)Session["PurityData"];
+                }
+
+                var getrecord = dd._context.Mst_SchemePurity.Where(x => x.SchemeId == scheme.SchemeId).ToList();
+                if (getrecord != null)
+                {
+                    foreach (var item1 in getrecord)
+                    {
+                        dd._context.Mst_SchemePurity.Remove(item1);
+                        dd._context.SaveChanges();
+                    }
+                }
+                foreach (var item in scheme.Purity)
+                {
+                    Mst_SchemePurity tblSchemePurity = new Mst_SchemePurity();
+                    tblSchemePurity.SchemeId = schemeid;
+                    tblSchemePurity.PurityId = item;
+                    dd._context.Mst_SchemePurity.Add(tblSchemePurity);
+                }
+                dd._context.SaveChanges();
             }
             catch (Exception ex)
             {
@@ -73,12 +96,13 @@ namespace MangalWebProject.Controllers
         {
             string operation = Session["Operation"].ToString();
             ButtonVisiblity(operation);
-            ViewBag.PurityList = new SelectList(dd._context.Mst_PurityMaster.ToList(), "Id", "PurityName");
             Mst_SchemeMaster tblScheme = dd._context.Mst_SchemeMaster.Where(x => x.SchemeId == ID).FirstOrDefault();
             SchemeViewModel scheme = new SchemeViewModel();
+            scheme.SchemeId = tblScheme.SchemeId;
+            scheme.EditID = tblScheme.SchemeId;
             scheme.Product = tblScheme.Product;
             scheme.SchemeName = tblScheme.SchemeName;
-           // scheme.Purity = tblScheme.Purity;
+            // scheme.Purity = tblScheme.Purity;
             scheme.SchemeType = tblScheme.SchemeType;
             scheme.Frequency = tblScheme.Frequency;
             scheme.MinTenure = (int)tblScheme.MinTenure;
@@ -96,12 +120,31 @@ namespace MangalWebProject.Controllers
             scheme.ProcessingCharges = tblScheme.ProcessingCharges;
             scheme.Status = tblScheme.Status;
             scheme.operation = operation;
+            List<Mst_SchemePurity> getPuritylist = dd._context.Mst_SchemePurity.Where(x => x.SchemeId == ID).ToList();
+            List<int> puritytlist = new List<int>();
+            foreach (var item in getPuritylist)
+            {
+
+                puritytlist.Add(item.PurityId);
+            }
+            scheme.Purity = puritytlist;
+            Session["PurityData"] = scheme.Purity;
+            ViewBag.PurityList = new SelectList(dd._context.Mst_PurityMaster.Where(x => x.PurityType == scheme.Product).ToList(), "Id", "PurityName");
             return View("Scheme", scheme);
         }
 
         // GETDelete/5
         public ActionResult Delete(int id)
         {
+            var getrecord = dd._context.Mst_SchemePurity.Where(x => x.SchemeId == id).ToList();
+            if (getrecord != null)
+            {
+                foreach (var item1 in getrecord)
+                {
+                    dd._context.Mst_SchemePurity.Remove(item1);
+                    dd._context.SaveChanges();
+                }
+            }
             var deleterecord = dd._context.Mst_SchemeMaster.Where(x => x.SchemeId == id).FirstOrDefault();
             if (deleterecord != null)
             {
