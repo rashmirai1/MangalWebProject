@@ -17,7 +17,6 @@ namespace MangalWebProject.Models.Entity
         public int SchemeId { get; set; }
         public short Product { get; set; }
         public string SchemeName { get; set; }
-        public int Purity { get; set; }
         public short SchemeType { get; set; }
         public short Frequency { get; set; }
         public Nullable<decimal> MinTenure { get; set; }
