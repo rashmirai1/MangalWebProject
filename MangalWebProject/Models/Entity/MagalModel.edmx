@@ -145,15 +145,26 @@
           <Property Name="Pr_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Pr_Date" Type="datetime" Nullable="false" />
           <Property Name="Pr_Product" Type="smallint" Nullable="false" />
-          <Property Name="Pr_Purity" Type="int" Nullable="false" />
-          <Property Name="Pr_GrossRate" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="Pr_Deductions" Type="smallint" Nullable="false" />
-          <Property Name="Pr_DeductionsAmount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="Pr_NetRate" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Pr_RecordCreated" Type="datetime" />
           <Property Name="Pr_RecordUpdated" Type="datetime" />
           <Property Name="Pr_RecordCreatedBy" Type="int" />
           <Property Name="Pr_RecordUpdatedBy" Type="int" />
+        </EntityType>
+        <EntityType Name="Mst_ProductRateDetails">
+          <Key>
+            <PropertyRef Name="Prd_Id" />
+          </Key>
+          <Property Name="Prd_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Prd_FkId" Type="int" Nullable="false" />
+          <Property Name="Prd_Purity" Type="int" Nullable="false" />
+          <Property Name="Prd_GrossRate" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Prd_Deductions" Type="smallint" Nullable="false" />
+          <Property Name="Prd_DeductionsAmount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Prd_NetRate" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Prd_RecordCreated" Type="datetime" />
+          <Property Name="Prd_RecordUpdated" Type="datetime" />
+          <Property Name="Prd_RecordCreatedBy" Type="int" />
+          <Property Name="Prd_RecordUpdatedBy" Type="int" />
         </EntityType>
         <EntityType Name="Mst_PurityMaster">
           <Key>
@@ -417,6 +428,18 @@ warning 6002: The table/view 'MangalDB.dbo.tbl_UserCategory' does not have a pri
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Mst_ProductRateDetails_Mst_ProductRate">
+          <End Role="Mst_ProductRate" Type="Self.Mst_ProductRate" Multiplicity="1" />
+          <End Role="Mst_ProductRateDetails" Type="Self.Mst_ProductRateDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mst_ProductRate">
+              <PropertyRef Name="Pr_Id" />
+            </Principal>
+            <Dependent Role="Mst_ProductRateDetails">
+              <PropertyRef Name="Prd_FkId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Mst_State_Mst_Country">
           <End Role="Mst_Country" Type="Self.Mst_Country" Multiplicity="0..1" />
           <End Role="Mst_State" Type="Self.Mst_State" Multiplicity="*" />
@@ -453,6 +476,7 @@ warning 6002: The table/view 'MangalDB.dbo.tbl_UserCategory' does not have a pri
           <EntitySet Name="Mst_PenaltySlab" EntityType="Self.Mst_PenaltySlab" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mst_PinCode" EntityType="Self.Mst_PinCode" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mst_ProductRate" EntityType="Self.Mst_ProductRate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mst_ProductRateDetails" EntityType="Self.Mst_ProductRateDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mst_PurityMaster" EntityType="Self.Mst_PurityMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mst_Reason" EntityType="Self.Mst_Reason" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mst_SchemeMaster" EntityType="Self.Mst_SchemeMaster" Schema="dbo" store:Type="Tables" />
@@ -510,6 +534,10 @@ warning 6002: The table/view 'MangalDB.dbo.tbl_UserCategory' does not have a pri
           <AssociationSet Name="FK_Mst_PinCode_Mst_PinCode" Association="Self.FK_Mst_PinCode_Mst_PinCode">
             <End Role="Mst_City" EntitySet="Mst_City" />
             <End Role="Mst_PinCode" EntitySet="Mst_PinCode" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mst_ProductRateDetails_Mst_ProductRate" Association="Self.FK_Mst_ProductRateDetails_Mst_ProductRate">
+            <End Role="Mst_ProductRate" EntitySet="Mst_ProductRate" />
+            <End Role="Mst_ProductRateDetails" EntitySet="Mst_ProductRateDetails" />
           </AssociationSet>
           <AssociationSet Name="FK_Mst_State_Mst_Country" Association="Self.FK_Mst_State_Mst_Country">
             <End Role="Mst_Country" EntitySet="Mst_Country" />
@@ -651,6 +679,11 @@ warning 6002: The table/view 'MangalDB.dbo.tbl_UserCategory' does not have a pri
           <EntitySet Name="Mst_SchemePurity" EntityType="MangalDBModel.Mst_SchemePurity" />
           <EntitySet Name="Mst_SchemeMaster" EntityType="MangalDBModel.Mst_SchemeMaster" />
           <EntitySet Name="Mst_ProductRate" EntityType="MangalDBModel.Mst_ProductRate" />
+          <EntitySet Name="Mst_ProductRateDetails" EntityType="MangalDBModel.Mst_ProductRateDetails" />
+          <AssociationSet Name="FK_Mst_ProductRateDetails_Mst_ProductRate" Association="MangalDBModel.FK_Mst_ProductRateDetails_Mst_ProductRate">
+            <End Role="Mst_ProductRate" EntitySet="Mst_ProductRate" />
+            <End Role="Mst_ProductRateDetails" EntitySet="Mst_ProductRateDetails" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Mst_City">
           <Key>
@@ -1002,16 +1035,41 @@ warning 6002: The table/view 'MangalDB.dbo.tbl_UserCategory' does not have a pri
           <Property Name="Pr_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Pr_Date" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Pr_Product" Type="Int16" Nullable="false" />
-          <Property Name="Pr_Purity" Type="Int32" Nullable="false" />
-          <Property Name="Pr_GrossRate" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-          <Property Name="Pr_Deductions" Type="Int16" Nullable="false" />
-          <Property Name="Pr_DeductionsAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="Pr_NetRate" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <Property Name="Pr_RecordCreated" Type="DateTime" Precision="3" />
           <Property Name="Pr_RecordUpdated" Type="DateTime" Precision="3" />
           <Property Name="Pr_RecordCreatedBy" Type="Int32" />
           <Property Name="Pr_RecordUpdatedBy" Type="Int32" />
+          <NavigationProperty Name="Mst_ProductRateDetails" Relationship="MangalDBModel.FK_Mst_ProductRateDetails_Mst_ProductRate" FromRole="Mst_ProductRate" ToRole="Mst_ProductRateDetails" />
         </EntityType>
+        <EntityType Name="Mst_ProductRateDetails">
+          <Key>
+            <PropertyRef Name="Prd_Id" />
+          </Key>
+          <Property Name="Prd_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Prd_FkId" Type="Int32" Nullable="false" />
+          <Property Name="Prd_Purity" Type="Int32" Nullable="false" />
+          <Property Name="Prd_GrossRate" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Prd_Deductions" Type="Int16" Nullable="false" />
+          <Property Name="Prd_DeductionsAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Prd_NetRate" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Prd_RecordCreated" Type="DateTime" Precision="3" />
+          <Property Name="Prd_RecordUpdated" Type="DateTime" Precision="3" />
+          <Property Name="Prd_RecordCreatedBy" Type="Int32" />
+          <Property Name="Prd_RecordUpdatedBy" Type="Int32" />
+          <NavigationProperty Name="Mst_ProductRate" Relationship="MangalDBModel.FK_Mst_ProductRateDetails_Mst_ProductRate" FromRole="Mst_ProductRateDetails" ToRole="Mst_ProductRate" />
+        </EntityType>
+        <Association Name="FK_Mst_ProductRateDetails_Mst_ProductRate">
+          <End Type="MangalDBModel.Mst_ProductRate" Role="Mst_ProductRate" Multiplicity="1" />
+          <End Type="MangalDBModel.Mst_ProductRateDetails" Role="Mst_ProductRateDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mst_ProductRate">
+              <PropertyRef Name="Pr_Id" />
+            </Principal>
+            <Dependent Role="Mst_ProductRateDetails">
+              <PropertyRef Name="Prd_FkId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1403,14 +1461,26 @@ warning 6002: The table/view 'MangalDB.dbo.tbl_UserCategory' does not have a pri
                 <ScalarProperty Name="Pr_RecordCreatedBy" ColumnName="Pr_RecordCreatedBy" />
                 <ScalarProperty Name="Pr_RecordUpdated" ColumnName="Pr_RecordUpdated" />
                 <ScalarProperty Name="Pr_RecordCreated" ColumnName="Pr_RecordCreated" />
-                <ScalarProperty Name="Pr_NetRate" ColumnName="Pr_NetRate" />
-                <ScalarProperty Name="Pr_DeductionsAmount" ColumnName="Pr_DeductionsAmount" />
-                <ScalarProperty Name="Pr_Deductions" ColumnName="Pr_Deductions" />
-                <ScalarProperty Name="Pr_GrossRate" ColumnName="Pr_GrossRate" />
-                <ScalarProperty Name="Pr_Purity" ColumnName="Pr_Purity" />
                 <ScalarProperty Name="Pr_Product" ColumnName="Pr_Product" />
                 <ScalarProperty Name="Pr_Date" ColumnName="Pr_Date" />
                 <ScalarProperty Name="Pr_Id" ColumnName="Pr_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mst_ProductRateDetails">
+            <EntityTypeMapping TypeName="MangalDBModel.Mst_ProductRateDetails">
+              <MappingFragment StoreEntitySet="Mst_ProductRateDetails">
+                <ScalarProperty Name="Prd_RecordUpdatedBy" ColumnName="Prd_RecordUpdatedBy" />
+                <ScalarProperty Name="Prd_RecordCreatedBy" ColumnName="Prd_RecordCreatedBy" />
+                <ScalarProperty Name="Prd_RecordUpdated" ColumnName="Prd_RecordUpdated" />
+                <ScalarProperty Name="Prd_RecordCreated" ColumnName="Prd_RecordCreated" />
+                <ScalarProperty Name="Prd_NetRate" ColumnName="Prd_NetRate" />
+                <ScalarProperty Name="Prd_DeductionsAmount" ColumnName="Prd_DeductionsAmount" />
+                <ScalarProperty Name="Prd_Deductions" ColumnName="Prd_Deductions" />
+                <ScalarProperty Name="Prd_GrossRate" ColumnName="Prd_GrossRate" />
+                <ScalarProperty Name="Prd_Purity" ColumnName="Prd_Purity" />
+                <ScalarProperty Name="Prd_FkId" ColumnName="Prd_FkId" />
+                <ScalarProperty Name="Prd_Id" ColumnName="Prd_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

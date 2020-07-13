@@ -81,6 +81,7 @@
                             </div>
                             <small style="float:right;"><span class="text-danger">* </span>indicates compulsary fields</small>
                             <hr style="margin-top:0px;" />
+                            <label><b>Charge Details</b></label><br /><br />
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
@@ -214,12 +215,15 @@
             });
 
             var sr_no = 0;
+            var trid = 0;
             currentRow = null;
             $("#tblChargeDetails TBODY TR").on("click", ".edit", function () {
                 debugger;
                 var tr = $(this).closest('tr');
                 currentRow= $(this).parents('tr');
                 sr_no = tr.find('td:eq(0)').html();
+                trid =tr.attr('id'); // table row ID 
+                //sr_no =$('tr').attr('id'); // table row ID 
                 var LoanAmountGreaterThan =  tr.find('td:eq(1)').html();
                 var LoanAmountLessThan = tr.find('td:eq(2)').html();
                 var Charges = tr.find('td:eq(3)').html();
@@ -248,8 +252,10 @@
                 var index = $("#tblChargeDetails tbody tr:last").index();
                 debugger;
                 var srno = 0;
+                var newtrno=trid;
                 if (sr_no == 0) {
                     srno = index + 2;
+                    newtrno=0;
                 }
                 else {
                     srno = sr_no;
@@ -257,13 +263,14 @@
                     //$("#tblChargeDetails tbody tr:eq(" + no + ")").remove();
                 }
                 sr_no = 0;
+                trid=0;
                 var LoanAmountGr = $("#chargeDetailsViewModel_LoanAmountGreaterthan").val();
                 var LoanAmountLe = $("#chargeDetailsViewModel_LoanAmountLessthan").val();
                 var ChargeAmount = $("#chargeDetailsViewModel_ChargeAmount").val();
                 var ChargeTypeId = $("#chargeDetailsViewModel_ChargeType").val();
                 var ChargeType = $("#chargeDetailsViewModel_ChargeType option:selected").text();
                 debugger;
-                var row = '<tr id=' + srno + '>' +
+                var row = '<tr id=' + newtrno + '>' +
                     '<td width="10%">' + srno + '</td>' +
                     '<td width="30%">' + LoanAmountGr + '</td>' +
                     '<td width="20%">' + LoanAmountLe + '</td>' +
@@ -294,6 +301,7 @@
                     currentRow= $(this).parents('tr');
                     debugger;
                     sr_no = tr.find('td:eq(0)').html();
+                    trid =tr.attr('id'); // table row ID 
                     var LoanAmountGreaterThan =  tr.find('td:eq(1)').html();
                     var LoanAmountLessThan = tr.find('td:eq(2)').html();
                     var Charges = tr.find('td:eq(3)').html();
