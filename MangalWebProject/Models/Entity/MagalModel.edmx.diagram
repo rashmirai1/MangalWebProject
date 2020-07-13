@@ -35,7 +35,9 @@
         <EntityTypeShape EntityType="MangalDBModel.tblPrimaryGroup" Width="1.5" PointX="4.75" PointY="14.75" />
         <EntityTypeShape EntityType="MangalDBModel.Mst_SchemePurity" Width="1.5" PointX="7.375" PointY="16.75" />
         <EntityTypeShape EntityType="MangalDBModel.Mst_SchemeMaster" Width="1.5" PointX="14.375" PointY="12.75" />
-        <EntityTypeShape EntityType="MangalDBModel.Mst_ProductRate" Width="1.5" PointX="16.375" PointY="12.75" />
+        <EntityTypeShape EntityType="MangalDBModel.Mst_ProductRate" Width="1.5" PointX="16.375" PointY="13.375" />
+        <EntityTypeShape EntityType="MangalDBModel.Mst_ProductRateDetails" Width="1.5" PointX="18.625" PointY="13" />
+        <AssociationConnector Association="MangalDBModel.FK_Mst_ProductRateDetails_Mst_ProductRate" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

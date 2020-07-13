@@ -51,5 +51,6 @@ namespace MangalWebProject.Models.Entity
         public virtual DbSet<Mst_SchemePurity> Mst_SchemePurity { get; set; }
         public virtual DbSet<Mst_SchemeMaster> Mst_SchemeMaster { get; set; }
         public virtual DbSet<Mst_ProductRate> Mst_ProductRate { get; set; }
+        public virtual DbSet<Mst_ProductRateDetails> Mst_ProductRateDetails { get; set; }
     }
 }
