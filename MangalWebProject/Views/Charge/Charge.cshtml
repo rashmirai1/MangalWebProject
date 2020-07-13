@@ -220,6 +220,7 @@
                 var tr = $(this).closest('tr');
                 currentRow= $(this).parents('tr');
                 sr_no = tr.find('td:eq(0)').html();
+                //sr_no =$('tr').attr('id'); // table row ID 
                 var LoanAmountGreaterThan =  tr.find('td:eq(1)').html();
                 var LoanAmountLessThan = tr.find('td:eq(2)').html();
                 var Charges = tr.find('td:eq(3)').html();
