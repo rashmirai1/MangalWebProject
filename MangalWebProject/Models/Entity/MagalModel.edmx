@@ -19,6 +19,29 @@
           <Property Name="Acl_RecordCreatedBy" Type="int" />
           <Property Name="Acl_RecordUpdatedBy" Type="int" />
         </EntityType>
+        <EntityType Name="Mst_Branch">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BranchName" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="BranchCode" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="BranchType" Type="smallint" Nullable="false" />
+          <Property Name="InceptionDate" Type="datetime" Nullable="false" />
+          <Property Name="RentPeriodAgreed" Type="datetime" />
+          <Property Name="Address" Type="varchar" MaxLength="100" />
+          <Property Name="Pincode" Type="int" />
+          <Property Name="ContactPerson" Type="varchar" MaxLength="50" />
+          <Property Name="MobileNo" Type="int" />
+          <Property Name="InTime" Type="varchar" MaxLength="10" />
+          <Property Name="OutTime" Type="varchar" MaxLength="10" />
+          <Property Name="DateWEF" Type="datetime" />
+          <Property Name="Status" Type="smallint" />
+          <Property Name="RecordCreated" Type="datetime" />
+          <Property Name="RecordUpdated" Type="datetime" />
+          <Property Name="RecordCreatedBy" Type="int" />
+          <Property Name="RecordUpdatedBy" Type="int" />
+        </EntityType>
         <EntityType Name="Mst_Charge">
           <Key>
             <PropertyRef Name="Chg_Id" />
@@ -466,6 +489,7 @@ warning 6002: The table/view 'MangalDB.dbo.tbl_UserCategory' does not have a pri
         </Association>
         <EntityContainer Name="MangalDBModelStoreContainer">
           <EntitySet Name="Mst_AuditCheckList" EntityType="Self.Mst_AuditCheckList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mst_Branch" EntityType="Self.Mst_Branch" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mst_Charge" EntityType="Self.Mst_Charge" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mst_ChargeDetails" EntityType="Self.Mst_ChargeDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mst_City" EntityType="Self.Mst_City" Schema="dbo" store:Type="Tables" />
@@ -684,6 +708,7 @@ warning 6002: The table/view 'MangalDB.dbo.tbl_UserCategory' does not have a pri
             <End Role="Mst_ProductRate" EntitySet="Mst_ProductRate" />
             <End Role="Mst_ProductRateDetails" EntitySet="Mst_ProductRateDetails" />
           </AssociationSet>
+          <EntitySet Name="Mst_Branch" EntityType="MangalDBModel.Mst_Branch" />
           </EntityContainer>
         <EntityType Name="Mst_City">
           <Key>
@@ -1070,6 +1095,29 @@ warning 6002: The table/view 'MangalDB.dbo.tbl_UserCategory' does not have a pri
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Mst_Branch">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BranchName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="BranchCode" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="BranchType" Type="Int16" Nullable="false" />
+          <Property Name="InceptionDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RentPeriodAgreed" Type="DateTime" Precision="3" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Pincode" Type="Int32" />
+          <Property Name="ContactPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MobileNo" Type="Int32" />
+          <Property Name="InTime" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="OutTime" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DateWEF" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="Int16" />
+          <Property Name="RecordCreated" Type="DateTime" Precision="3" />
+          <Property Name="RecordUpdated" Type="DateTime" Precision="3" />
+          <Property Name="RecordCreatedBy" Type="Int32" />
+          <Property Name="RecordUpdatedBy" Type="Int32" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1481,6 +1529,30 @@ warning 6002: The table/view 'MangalDB.dbo.tbl_UserCategory' does not have a pri
                 <ScalarProperty Name="Prd_Purity" ColumnName="Prd_Purity" />
                 <ScalarProperty Name="Prd_FkId" ColumnName="Prd_FkId" />
                 <ScalarProperty Name="Prd_Id" ColumnName="Prd_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mst_Branch">
+            <EntityTypeMapping TypeName="MangalDBModel.Mst_Branch">
+              <MappingFragment StoreEntitySet="Mst_Branch">
+                <ScalarProperty Name="RecordUpdatedBy" ColumnName="RecordUpdatedBy" />
+                <ScalarProperty Name="RecordCreatedBy" ColumnName="RecordCreatedBy" />
+                <ScalarProperty Name="RecordUpdated" ColumnName="RecordUpdated" />
+                <ScalarProperty Name="RecordCreated" ColumnName="RecordCreated" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="DateWEF" ColumnName="DateWEF" />
+                <ScalarProperty Name="OutTime" ColumnName="OutTime" />
+                <ScalarProperty Name="InTime" ColumnName="InTime" />
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="ContactPerson" ColumnName="ContactPerson" />
+                <ScalarProperty Name="Pincode" ColumnName="Pincode" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="RentPeriodAgreed" ColumnName="RentPeriodAgreed" />
+                <ScalarProperty Name="InceptionDate" ColumnName="InceptionDate" />
+                <ScalarProperty Name="BranchType" ColumnName="BranchType" />
+                <ScalarProperty Name="BranchCode" ColumnName="BranchCode" />
+                <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
