@@ -32,7 +32,7 @@
           <Property Name="Address" Type="varchar" MaxLength="100" />
           <Property Name="Pincode" Type="int" />
           <Property Name="ContactPerson" Type="varchar" MaxLength="50" />
-          <Property Name="MobileNo" Type="int" />
+          <Property Name="MobileNo" Type="varchar" MaxLength="10" />
           <Property Name="InTime" Type="varchar" MaxLength="10" />
           <Property Name="OutTime" Type="varchar" MaxLength="10" />
           <Property Name="DateWEF" Type="datetime" />
@@ -373,6 +373,16 @@ warning 6002: The table/view 'MangalDB.dbo.tbl_UserCategory' does not have a pri
           <Property Name="Suspended" Type="nvarchar" MaxLength="50" />
           <Property Name="GSTIN" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="tblfinancialyear">
+          <Key>
+            <PropertyRef Name="FinancialyearID" />
+          </Key>
+          <Property Name="FinancialyearID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Financialyearfrom" Type="datetime" Nullable="false" />
+          <Property Name="Financialyearto" Type="datetime" Nullable="false" />
+          <Property Name="Financialyear" Type="nvarchar" MaxLength="50" />
+          <Property Name="CompID" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="tblGroupMaster">
           <Key>
             <PropertyRef Name="GPID" />
@@ -510,6 +520,7 @@ warning 6002: The table/view 'MangalDB.dbo.tbl_UserCategory' does not have a pri
           <EntitySet Name="Mst_Zone" EntityType="Self.Mst_Zone" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_Menu" EntityType="Self.tbl_Menu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblaccountmaster" EntityType="Self.tblaccountmaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblfinancialyear" EntityType="Self.tblfinancialyear" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblGroupMaster" EntityType="Self.tblGroupMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblPrimaryGroup" EntityType="Self.tblPrimaryGroup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="u_userauthorization" EntityType="Self.u_userauthorization" Schema="dbo" store:Type="Tables" />
@@ -709,6 +720,7 @@ warning 6002: The table/view 'MangalDB.dbo.tbl_UserCategory' does not have a pri
             <End Role="Mst_ProductRateDetails" EntitySet="Mst_ProductRateDetails" />
           </AssociationSet>
           <EntitySet Name="Mst_Branch" EntityType="MangalDBModel.Mst_Branch" />
+          <EntitySet Name="tblfinancialyears" EntityType="MangalDBModel.tblfinancialyear" />
           </EntityContainer>
         <EntityType Name="Mst_City">
           <Key>
@@ -1108,7 +1120,7 @@ warning 6002: The table/view 'MangalDB.dbo.tbl_UserCategory' does not have a pri
           <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Pincode" Type="Int32" />
           <Property Name="ContactPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="MobileNo" Type="Int32" />
+          <Property Name="MobileNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="InTime" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="OutTime" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="DateWEF" Type="DateTime" Precision="3" />
@@ -1117,6 +1129,16 @@ warning 6002: The table/view 'MangalDB.dbo.tbl_UserCategory' does not have a pri
           <Property Name="RecordUpdated" Type="DateTime" Precision="3" />
           <Property Name="RecordCreatedBy" Type="Int32" />
           <Property Name="RecordUpdatedBy" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tblfinancialyear">
+          <Key>
+            <PropertyRef Name="FinancialyearID" />
+          </Key>
+          <Property Name="FinancialyearID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Financialyearfrom" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Financialyearto" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Financialyear" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompID" Type="Int32" Nullable="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -1553,6 +1575,17 @@ warning 6002: The table/view 'MangalDB.dbo.tbl_UserCategory' does not have a pri
                 <ScalarProperty Name="BranchCode" ColumnName="BranchCode" />
                 <ScalarProperty Name="BranchName" ColumnName="BranchName" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblfinancialyears">
+            <EntityTypeMapping TypeName="MangalDBModel.tblfinancialyear">
+              <MappingFragment StoreEntitySet="tblfinancialyear">
+                <ScalarProperty Name="CompID" ColumnName="CompID" />
+                <ScalarProperty Name="Financialyear" ColumnName="Financialyear" />
+                <ScalarProperty Name="Financialyearto" ColumnName="Financialyearto" />
+                <ScalarProperty Name="Financialyearfrom" ColumnName="Financialyearfrom" />
+                <ScalarProperty Name="FinancialyearID" ColumnName="FinancialyearID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

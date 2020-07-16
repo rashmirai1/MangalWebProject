@@ -45,7 +45,7 @@ namespace MangalWebProject.Models
         [Required(ErrorMessage = "Please Enter Contact Person")]
         public string ContactPerson { get; set; }
         [Required(ErrorMessage = "Please Enter Mobile No")]
-        public int MobileNo { get; set; }
+        public string MobileNo { get; set; }
         [Required(ErrorMessage = "Please Enter In Time")]
         public string InTime { get; set; }
         [Required(ErrorMessage = "Please Enter Out Time")]

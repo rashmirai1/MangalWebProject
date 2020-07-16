@@ -23,7 +23,7 @@ namespace MangalWebProject.Models.Entity
         public string Address { get; set; }
         public Nullable<int> Pincode { get; set; }
         public string ContactPerson { get; set; }
-        public Nullable<int> MobileNo { get; set; }
+        public string MobileNo { get; set; }
         public string InTime { get; set; }
         public string OutTime { get; set; }
         public Nullable<System.DateTime> DateWEF { get; set; }

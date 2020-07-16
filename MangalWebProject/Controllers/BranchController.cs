@@ -36,24 +36,53 @@ namespace MangalWebProject.Controllers
                 }
                 else
                 {
-                    tblBranch = dd._context.Mst_Branch.Where(x => x.ID == branch.ID).FirstOrDefault();
+                    tblBranch = dd._context.Mst_Branch.Where(x => x.ID == branch.ID && x.Status==1).FirstOrDefault();
                 }
-                tblBranch.BranchName = branch.BranchName;
-                tblBranch.BranchCode = branch.BranchCode;
-                tblBranch.BranchType = branch.BranchType;
-                tblBranch.InceptionDate = Convert.ToDateTime(branch.DateInception);
-                tblBranch.RentPeriodAgreed = Convert.ToDateTime(branch.RentPeriodAgreed);
-                tblBranch.Address = branch.Address;
-                tblBranch.Pincode = branch.Pincode;
-                tblBranch.ContactPerson = branch.ContactPerson;
-                tblBranch.MobileNo = branch.MobileNo;
-                tblBranch.InTime = branch.InTime;
-                tblBranch.OutTime = branch.OutTime;
-                //tblBranch.DateWEF = Convert.ToDateTime(branch.DateWEF);
-                tblBranch.Status = branch.Status;
-                tblBranch.DateWEF = Convert.ToDateTime(branch.RentPeriodAgreed);
-                tblBranch.RecordUpdated = DateTime.Now;
-                tblBranch.RecordUpdatedBy = branch.UpdatedBy;
+                // first inactive record then insert active record
+                if (tblBranch.RentPeriodAgreed != Convert.ToDateTime(branch.RentPeriodAgreed))
+                {
+                    tblBranch.Status = 2;
+                    dd._context.SaveChanges();
+                    tblBranch = new Mst_Branch();
+                    tblBranch.BranchName = branch.BranchName;
+                    tblBranch.BranchCode = branch.BranchCode;
+                    tblBranch.BranchType = branch.BranchType;
+                    tblBranch.InceptionDate = Convert.ToDateTime(branch.DateInception);
+                    tblBranch.RentPeriodAgreed = Convert.ToDateTime(branch.RentPeriodAgreed);
+                    tblBranch.Address = branch.Address;
+                    tblBranch.Pincode = branch.Pincode;
+                    tblBranch.ContactPerson = branch.ContactPerson;
+                    tblBranch.MobileNo = branch.MobileNo;
+                    tblBranch.InTime = branch.InTime;
+                    tblBranch.OutTime = branch.OutTime;
+                    tblBranch.DateWEF = Convert.ToDateTime(branch.DateWEF);
+                    tblBranch.Status = branch.Status;
+                    tblBranch.DateWEF = Convert.ToDateTime(branch.RentPeriodAgreed);
+                    tblBranch.RecordUpdated = DateTime.Now;
+                    tblBranch.RecordUpdatedBy = branch.UpdatedBy;
+                    tblBranch.RecordCreated = DateTime.Now;
+                    tblBranch.RecordCreatedBy = branch.CreatedBy;
+                    dd._context.Mst_Branch.Add(tblBranch);
+                }
+                else
+                {
+                    tblBranch.BranchName = branch.BranchName;
+                    tblBranch.BranchCode = branch.BranchCode;
+                    tblBranch.BranchType = branch.BranchType;
+                    tblBranch.InceptionDate = Convert.ToDateTime(branch.DateInception);
+                    tblBranch.RentPeriodAgreed = Convert.ToDateTime(branch.RentPeriodAgreed);
+                    tblBranch.Address = branch.Address;
+                    tblBranch.Pincode = branch.Pincode;
+                    tblBranch.ContactPerson = branch.ContactPerson;
+                    tblBranch.MobileNo = branch.MobileNo;
+                    tblBranch.InTime = branch.InTime;
+                    tblBranch.OutTime = branch.OutTime;
+                    tblBranch.DateWEF = Convert.ToDateTime(branch.DateWEF);
+                    tblBranch.Status = branch.Status;
+                    tblBranch.DateWEF = Convert.ToDateTime(branch.RentPeriodAgreed);
+                    tblBranch.RecordUpdated = DateTime.Now;
+                    tblBranch.RecordUpdatedBy = branch.UpdatedBy;
+                }
                 dd._context.SaveChanges();
             }
             catch (Exception ex)
@@ -67,7 +96,7 @@ namespace MangalWebProject.Controllers
         {
             string operation = Session["Operation"].ToString();
             ButtonVisiblity(operation);
-            Mst_Branch tblBranch = dd._context.Mst_Branch.Where(x => x.ID == ID).FirstOrDefault();
+            Mst_Branch tblBranch = dd._context.Mst_Branch.Where(x => x.ID == ID && x.Status==1).FirstOrDefault();
             BranchViewModel branch = new BranchViewModel();
             branch.BranchName = tblBranch.BranchName;
             branch.BranchCode = tblBranch.BranchCode;
@@ -77,11 +106,12 @@ namespace MangalWebProject.Controllers
             branch.Address = tblBranch.Address;
             branch.Pincode = (int)tblBranch.Pincode;
             branch.ContactPerson = tblBranch.ContactPerson;
-            branch.MobileNo = (int)tblBranch.MobileNo;
-            branch.InTime = tblBranch.InTime;
-            branch.OutTime = tblBranch.OutTime;
+            branch.MobileNo = tblBranch.MobileNo;
+            branch.InTime =tblBranch.InTime;
+            branch.OutTime= tblBranch.OutTime;
             branch.DateWEF = Convert.ToDateTime(branch.DateWEF).ToShortDateString();
             branch.operation = operation;
+            branch.Status =(short)tblBranch.Status;
             ViewBag.PincodeList = new SelectList(dd._context.Mst_PinCode.ToList(), "Pc_Id", "Pc_Desc");
             var pincodemodel = dd._context.Mst_PinCode.Where(x => x.Pc_Id == branch.Pincode).Select(x => new PincodeViewModel { CityId = x.Pc_CityId, ZoneId = x.Pc_ZoneId, AreaName = x.Pc_AreaName }).FirstOrDefault();
             var ZoneName = dd._context.Mst_Zone.Where(x => x.Zne_No == pincodemodel.ZoneId).Select(x => x.Zne_Desc).FirstOrDefault();
@@ -98,22 +128,22 @@ namespace MangalWebProject.Controllers
         public ActionResult Delete(int id)
         {
             string data = "";
-            if (dd._context.Mst_PinCode.Any(o => o.Pc_ZoneId == id))
-            {
-                data = "Record Cannot Be Deleted Already In Use!";
+            //if (dd._context.Mst_PinCode.Any(o => o.Pc_Id == id))
+            //{
+            //    data = "Record Cannot Be Deleted Already In Use!";
 
-                return Json(data, JsonRequestBehavior.AllowGet);
-            }
-            else
+            //    return Json(data, JsonRequestBehavior.AllowGet);
+            //}
+            //else
+            //{
+            var deleterecord = dd._context.Mst_Branch.Where(x => x.ID == id && x.Status == 1).FirstOrDefault();
+            if (deleterecord != null)
             {
-                var deleterecord = dd._context.Mst_Branch.Where(x => x.ID == id && x.Status == 1).FirstOrDefault();
-                if (deleterecord != null)
-                {
-                    dd._context.Mst_Branch.Remove(deleterecord);
-                    dd._context.SaveChanges();
-                }
-                return Json(JsonRequestBehavior.AllowGet);
+                dd._context.Mst_Branch.Remove(deleterecord);
+                dd._context.SaveChanges();
             }
+            return Json(JsonRequestBehavior.AllowGet);
+            //}
         }
 
         public JsonResult doesBranchNameExist(string BranchName)
@@ -147,7 +177,7 @@ namespace MangalWebProject.Controllers
         {
             Session["Operation"] = Operation;
             //ButtonVisiblity(Operation);
-            var tablelist = dd._context.Mst_Branch.ToList();
+            var tablelist = dd._context.Mst_Branch.Where(x=>x.Status==1).ToList();
             List<BranchViewModel> list = new List<BranchViewModel>();
             var model = new BranchViewModel();
             foreach (var item in tablelist)
@@ -156,6 +186,9 @@ namespace MangalWebProject.Controllers
                 model.ID = item.ID;
                 model.BranchName = item.BranchName;
                 model.BranchCode = item.BranchCode;
+                model.DateInception = item.InceptionDate.ToShortDateString();
+                model.RentPeriodAgreed =Convert.ToDateTime(item.RentPeriodAgreed).ToShortDateString();
+                model.Address = item.Address;
                 model.StatusStr = item.Status == 1 ? "Active" : "Inactive";
                 list.Add(model);
             }
