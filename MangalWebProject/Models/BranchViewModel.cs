@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -12,13 +13,13 @@ namespace MangalWebProject.Models
 
         [Required(ErrorMessage = "Branch Name is Required")]
         [StringLength(20)]
-        public string BranchName  { get; set; }
+        public string BranchName { get; set; }
 
         [Required(ErrorMessage = "Branch Code is Required")]
         [StringLength(20)]
         public string BranchCode { get; set; }
 
-        [Required(ErrorMessage ="Please Select Branch Type")]
+        [Required(ErrorMessage = "Please Select Branch Type")]
         public short BranchType { get; set; }
 
         [Required(ErrorMessage = "Date Inception is Required")]
@@ -30,6 +31,11 @@ namespace MangalWebProject.Models
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [DataType(DataType.DateTime)]
         public string RentPeriodAgreed { get; set; }
+
+        [Required(ErrorMessage = "Date WEF Agreed is Required")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.DateTime)]
+        public string DateWEF { get; set; }
 
         [Required(ErrorMessage = "Please Enter Address")]
         public string Address { get; set; }
@@ -51,8 +57,6 @@ namespace MangalWebProject.Models
         [Required(ErrorMessage = "Please Enter Out Time")]
         public string OutTime { get; set; }
 
-        public string DateWEF { get; set; }
-
         [Required(ErrorMessage = "Please Select Status")]
         public short Status { get; set; }
         public string StatusStr { get; set; }
@@ -63,5 +67,14 @@ namespace MangalWebProject.Models
         public DateTime? CreatedDate { get; set; }
         public int? UpdatedBy { get; set; }
         public DateTime? UpdatedDate { get; set; }
+
+        [NotMapped]
+        public string PincodeWithArea
+        {
+            get
+            {
+                return Pincode + " (" + AreaName + ")";
+            }
+        }
     }
 }

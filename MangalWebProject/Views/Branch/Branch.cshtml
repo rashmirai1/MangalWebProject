@@ -69,7 +69,7 @@
                                                             {
                                                                 new SelectListItem { Text = "Select Branch Type"},
                                                                 new SelectListItem { Text = "Rented", Value = "1"},
-                                                                    new SelectListItem { Text = "Ownership", Value = "2"},
+                                                                new SelectListItem { Text = "Ownership", Value = "2"},
                                                                     }, "Value", "Text");
                                                         }
                                                         @Html.DropDownListFor(m => m.BranchType, branchTypeList)
@@ -78,29 +78,35 @@
                                                     </label>
                                                 </div>
                                             </div>
-                                            <label class="col-lg-2 col-md-2 col-sm-3 col-xs-12 control-label">Date on Inception<span class="text-danger"> * </span></label>
+                                            <label class="col-lg-2 col-md-2 col-sm-3 col-xs-12 control-label">Date w.e.f<span class="text-danger"> * </span></label>
                                             <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
-                                                @Html.EditorFor(model => model.DateInception, new { htmlAttributes = new { @class = "form-control", @placeholder = "Date on Inception/Renewed", @autocomplete = "Off" } })
-                                                <span class="text-danger">@Html.ValidationMessageFor(m => m.DateInception)</span>
+                                                @Html.EditorFor(model => model.DateWEF, new { htmlAttributes = new { @class = "form-control", @placeholder = "Date w.e.f", @autocomplete = "Off" } })
+                                                <span class="text-danger">@Html.ValidationMessageFor(m => m.DateWEF)</span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12" style="margin-top: 10px;">
                                         <div class="form-group">
-                                            <label class="col-lg-2 col-md-2 col-sm-3 col-xs-12 control-label">Rent Period Agreed<span class="text-danger"> * </span></label>
+                                            <label class="col-lg-2 col-md-2 col-sm-3 col-xs-12 control-label">Date on Inception<span class="text-danger"> * </span></label>
+                                            <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+                                                @Html.EditorFor(model => model.DateInception, new { htmlAttributes = new { @class = "form-control", @placeholder = "Date on Inception/Renewed", @autocomplete = "Off" } })
+                                                <span class="text-danger">@Html.ValidationMessageFor(m => m.DateInception)</span>
+                                            </div>
+                                            <label class="col-lg-2 col-md-2 col-sm-3 col-xs-12 control-label" id="lblRent">Rent Period Agreed<span class="text-danger"> * </span></label>
                                             <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
                                                 @Html.EditorFor(model => model.RentPeriodAgreed, new { htmlAttributes = new { @class = "form-control", @placeholder = "Rent period agreed untill", @autocomplete = "Off" } })
                                                 <span class="text-danger">@Html.ValidationMessageFor(m => m.RentPeriodAgreed)</span>
                                             </div>
-                                            <label class="col-lg-2 col-md-2 col-sm-3 col-xs-12 control-label">Address<span class="text-danger"> * </span></label>
-                                            <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
-                                                @Html.TextAreaFor(model => model.Address, new { @class = "form-control", @placeholder = "Address", @maxlength = "100",@cols="2",@rows="2"})
-                                                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
-                                            </div>
+
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                                         <div class="form-group">
+                                            <label class="col-lg-2 col-md-2 col-sm-3 col-xs-12 control-label">Address<span class="text-danger"> * </span></label>
+                                            <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+                                                @Html.TextAreaFor(model => model.Address, new { @class = "form-control", @placeholder = "Address", @maxlength = "100", @cols = "2", @rows = "2" })
+                                                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                                            </div>
                                             <label class="col-lg-2 col-md-2 col-sm-3 col-xs-12 control-label">Pincode<span class="text-danger"> * </span></label>
                                             <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
                                                 <div class="section">
@@ -111,45 +117,53 @@
                                                     </label>
                                                 </div>
                                             </div>
-                                            <label class="col-lg-2 col-md-2 col-sm-3 col-xs-12 control-label">Area</label>
-                                            <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
-                                                @Html.EditorFor(model => model.AreaName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Area Name", @disabled = "disabled" } })
-                                            </div>
+
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12" style="margin-top:10px;">
                                         <div class="form-group">
+                                            <label class="col-lg-2 col-md-2 col-sm-3 col-xs-12 control-label">Area</label>
+                                            <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+                                                @Html.EditorFor(model => model.AreaName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Area Name", @disabled = "disabled" } })
+                                            </div>
                                             <label class="col-lg-2 col-md-2 col-sm-3 col-xs-12 control-label">Zone</label>
                                             <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
                                                 @Html.EditorFor(model => model.ZoneName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Zone Name", @disabled = "disabled" } })
                                             </div>
-                                            <label class="col-lg-2 col-md-2 col-sm-3 col-xs-12 control-label">City</label>
-                                            <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
-                                                @Html.EditorFor(model => model.CityName, new { htmlAttributes = new { @class = "form-control", @placeholder = "City Name", @disabled = "disabled" } })
-                                            </div>
+
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                                         <div class="form-group">
+                                            <label class="col-lg-2 col-md-2 col-sm-3 col-xs-12 control-label">City</label>
+                                            <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+                                                @Html.EditorFor(model => model.CityName, new { htmlAttributes = new { @class = "form-control", @placeholder = "City Name", @disabled = "disabled" } })
+                                            </div>
                                             <label class="col-lg-2 col-md-2 col-sm-3 col-xs-12 control-label">State</label>
                                             <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
                                                 @Html.EditorFor(model => model.StateName, new { htmlAttributes = new { @class = "form-control", @placeholder = "State Name", @disabled = "disabled" } })
                                             </div>
+
+                                        </div>
+                                        <br />
+                                    </div>
+                                    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                                        <div class="form-group">
                                             <label class="col-lg-2 col-md-2 col-sm-3 col-xs-12 control-label">Contact Person<span class="text-danger"> * </span></label>
                                             <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
                                                 @Html.EditorFor(model => model.ContactPerson, new { htmlAttributes = new { @class = "form-control", @placeholder = "Contact Person", @maxlength = "50" } })
                                                 @Html.ValidationMessageFor(model => model.ContactPerson, "", new { @class = "text-danger" })
+                                            </div>
+                                            <label class="col-lg-2 col-md-2 col-sm-3 col-xs-12 control-label">Contact Mobile No<span class="text-danger"> * </span></label>
+                                            <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+                                                @Html.EditorFor(model => model.MobileNo, new { htmlAttributes = new { @class = "form-control", @placeholder = "Contact Mobile No", @onkeypress = "return event.charCode >= 48 && event.charCode <= 57", @maxlength = "10" } })
+                                                @Html.ValidationMessageFor(model => model.MobileNo, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
                                         <br />
                                     </div>
                                     <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                                         <div class="form-group">
-                                            <label class="col-lg-2 col-md-2 col-sm-3 col-xs-12 control-label">Contact Mobile No<span class="text-danger"> * </span></label>
-                                            <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
-                                                @Html.EditorFor(model => model.MobileNo, new { htmlAttributes = new { @class = "form-control", @placeholder = "Contact Mobile No", @onkeypress = "return event.charCode >= 48 && event.charCode <= 57", @maxlength = "10" } })
-                                                @Html.ValidationMessageFor(model => model.MobileNo, "", new { @class = "text-danger" })
-                                            </div>
                                             <label class="col-lg-2 col-md-2 col-sm-3 col-xs-12 control-label">Status<span class="text-danger"> * </span></label>
                                             <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
                                                 <div class="section">
@@ -168,33 +182,31 @@
                                                     </label>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <br />
-                                    </div>
-                                    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
-                                        <div class="form-group">
                                             <label class="col-lg-2 col-md-2 col-sm-3 col-xs-12 control-label">In Time<span class="text-danger"> * </span></label>
                                             <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
                                                 @Html.TextBoxFor(model => model.InTime, new { @class = "form-control", @placeholder = "In Time", @autocomplete = "Off" })
                                                 @Html.ValidationMessageFor(model => model.InTime, "", new { @class = "text-danger" })
                                             </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                                        <div class="form-group">
                                             <label class="col-lg-2 col-md-2 col-sm-3 col-xs-12 control-label">Out Time<span class="text-danger"> * </span></label>
                                             <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
-                                                @Html.TextBoxFor(model => model.OutTime, new {@class = "form-control", @placeholder = "Out Time", @autocomplete = "Off" })
+                                                @Html.TextBoxFor(model => model.OutTime, new { @class = "form-control", @placeholder = "Out Time", @autocomplete = "Off" })
                                                 @Html.ValidationMessageFor(model => model.OutTime, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
-                                        
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <small style="float:right"><span class="text-danger">* </span>indicates compulsary fields</small>
+                <small style="float:right"><span class="text-danger">* </span>indicates compulsary fields</small>
     </section>
-                                                        }
+                                                            }
 @*<script src="~/Scripts/jquery-1.10.2.min.js"></script>*@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
@@ -202,13 +214,15 @@
 @section javascriptsection{
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
-<link href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <link href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/jquery.validate.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             if (document.URL.indexOf("ID") != -1) {
-                $("#RentPeriodAgreed").change(function () {
+                $("#DateWEF").attr('disabled','disabled')
+
+                $("#DateInception").change(function () {
                     $("#Pincode").val("");
                     $("#Address").val("");
                     $("#AreaName").val("");
@@ -217,18 +231,29 @@
                     $("#StateName").val("");
                     $("#ContactPerson").val("");
                     $("#MobileNo").val("");
-                });
+                });                
             }
+            $("#BranchType").change(function () {
+                if ($("#BranchType").val() == 2) {
+                    $("#RentPeriodAgreed").hide();
+                    $("#lblRent").hide();
+                }
+                else {
+                    $("#RentPeriodAgreed").show();
+                    $("#lblRent").show();
+                }
+            });
+
             $("#DateInception").datepicker({ dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true });
             $("#RentPeriodAgreed").datepicker({ dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true });
-            //$("#ProductRateDate").datepicker({ dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true });
+            $("#DateWEF").datepicker({ dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true });
 
             $('#InTime').timepicker({
                 timeFormat: 'h:mm p',
                 interval: 60,
                 minTime: '10',
                 maxTime: '9:00pm',
-               // defaultTime: '10',
+                // defaultTime: '10',
                 startTime: '10:00',
                 dynamic: false,
                 dropdown: true,
@@ -240,7 +265,7 @@
                 interval: 60,
                 minTime: '10',
                 maxTime: '9:00pm',
-               // defaultTime: '10',
+                // defaultTime: '10',
                 startTime: '10:00',
                 dynamic: false,
                 dropdown: true,
