@@ -17,6 +17,8 @@ namespace MangalWebProject.Models.Entity
         public int FinancialyearID { get; set; }
         public System.DateTime Financialyearfrom { get; set; }
         public System.DateTime Financialyearto { get; set; }
+        public System.DateTime StartDate { get; set; }
+        public System.DateTime EndDate { get; set; }
         public string Financialyear { get; set; }
         public int CompID { get; set; }
     }

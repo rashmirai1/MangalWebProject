@@ -21,7 +21,7 @@ namespace MangalWebProject.Models.Entity
         public System.DateTime InceptionDate { get; set; }
         public Nullable<System.DateTime> RentPeriodAgreed { get; set; }
         public string Address { get; set; }
-        public Nullable<int> Pincode { get; set; }
+        public int Pincode { get; set; }
         public string ContactPerson { get; set; }
         public string MobileNo { get; set; }
         public string InTime { get; set; }
@@ -32,5 +32,7 @@ namespace MangalWebProject.Models.Entity
         public Nullable<System.DateTime> RecordUpdated { get; set; }
         public Nullable<int> RecordCreatedBy { get; set; }
         public Nullable<int> RecordUpdatedBy { get; set; }
+    
+        public virtual Mst_PinCode Mst_PinCode { get; set; }
     }
 }
