@@ -234,7 +234,7 @@ namespace MangalWebProject.Controllers
                 model.BranchCode = item.BranchCode;
                 model.DateInception = item.InceptionDate.ToShortDateString();
                 model.DateWEF = Convert.ToDateTime(item.DateWEF).ToShortDateString();
-                model.Pincode = item.Pincode;
+                model.PincodeStr = item.Mst_PinCode.Pc_Desc;
                 model.AreaName = item.Mst_PinCode.Pc_AreaName;
                 model.StatusStr = item.Status == 1 ? "Active" : "Inactive";
                 list.Add(model);
