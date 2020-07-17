@@ -139,7 +139,7 @@ namespace MangalWebProject.Controllers
             branch.RentPeriodAgreed = Convert.ToDateTime(tblBranch.RentPeriodAgreed).ToShortDateString();
             branch.DateWEF = Convert.ToDateTime(tblBranch.DateWEF).ToShortDateString();
             branch.Address = tblBranch.Address;
-            branch.Pincode = (int)tblBranch.Pincode;
+            branch.Pincode = tblBranch.Pincode;
             branch.ContactPerson = tblBranch.ContactPerson;
             branch.MobileNo = tblBranch.MobileNo;
             branch.InTime = tblBranch.InTime;
@@ -234,7 +234,8 @@ namespace MangalWebProject.Controllers
                 model.BranchCode = item.BranchCode;
                 model.DateInception = item.InceptionDate.ToShortDateString();
                 model.DateWEF = Convert.ToDateTime(item.DateWEF).ToShortDateString();
-                model.Address = item.Address;
+                model.Pincode = item.Pincode;
+                model.AreaName = item.Mst_PinCode.Pc_AreaName;
                 model.StatusStr = item.Status == 1 ? "Active" : "Inactive";
                 list.Add(model);
             }
