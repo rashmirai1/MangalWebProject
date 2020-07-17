@@ -68,13 +68,5 @@ namespace MangalWebProject.Models
         public int? UpdatedBy { get; set; }
         public DateTime? UpdatedDate { get; set; }
 
-        [NotMapped]
-        public string PincodeWithArea
-        {
-            get
-            {
-                return Pincode + " (" + AreaName + ")";
-            }
-        }
     }
 }
