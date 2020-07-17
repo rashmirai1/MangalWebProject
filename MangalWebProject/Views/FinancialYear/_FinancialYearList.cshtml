@@ -15,8 +15,8 @@
                         @foreach (tblfinancialyear item in Model)
                         {
                             <tr class="gradeX" onclick='window.document.location="/FinancialYear/GetFinancialYearById?ID=@item.FinancialyearID"'>
-                                <td>@item.Financialyearfrom</td>
-                                <td>@item.Financialyearto</td>
+                                <td>@item.Financialyearfrom.ToShortDateString()</td>
+                                <td>@item.Financialyearto.ToShortDateString()</td>
                             </tr>
                         }
                     </tbody>
