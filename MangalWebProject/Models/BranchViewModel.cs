@@ -42,6 +42,7 @@ namespace MangalWebProject.Models
 
         [Required(ErrorMessage = "Please Select Pincode")]
         public int Pincode { get; set; }
+        public string PincodeStr { get; set; }
 
         public string AreaName { get; set; }
         public string ZoneName { get; set; }
