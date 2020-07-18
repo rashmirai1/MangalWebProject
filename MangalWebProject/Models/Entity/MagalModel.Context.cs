@@ -54,5 +54,7 @@ namespace MangalWebProject.Models.Entity
         public virtual DbSet<Mst_ProductRateDetails> Mst_ProductRateDetails { get; set; }
         public virtual DbSet<tblfinancialyear> tblfinancialyears { get; set; }
         public virtual DbSet<Mst_Branch> Mst_Branch { get; set; }
+        public virtual DbSet<Mst_ChildDeviation> Mst_ChildDeviation { get; set; }
+        public virtual DbSet<Mst_ParentDeviation> Mst_ParentDeviation { get; set; }
     }
 }

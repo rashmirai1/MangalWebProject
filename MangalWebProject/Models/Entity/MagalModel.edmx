@@ -70,6 +70,22 @@
           <Property Name="Chg_RecordCreatedBy" Type="int" />
           <Property Name="Chg_RecordUpdatedBy" Type="int" />
         </EntityType>
+        <EntityType Name="Mst_ChildDeviation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ParentId" Type="int" Nullable="false" />
+          <Property Name="ApproveDistanceLimit" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="MinRange" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="MaxRange" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="UserCategoryId" Type="int" />
+          <Property Name="ThreasoldLimit" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="RecordCreated" Type="datetime" />
+          <Property Name="RecordUpdated" Type="datetime" />
+          <Property Name="RecordCreatedBy" Type="int" />
+          <Property Name="RecordUpdatedBy" Type="int" />
+        </EntityType>
         <EntityType Name="Mst_City">
           <Key>
             <PropertyRef Name="Ct_Id" />
@@ -133,6 +149,13 @@
           <Property Name="Orn_RecordUpdated" Type="datetime" />
           <Property Name="Orn_RecordCreatedBy" Type="int" />
           <Property Name="Orn_RecordUpdatedBy" Type="int" />
+        </EntityType>
+        <EntityType Name="Mst_ParentDeviation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Mst_PenaltySlab">
           <Key>
@@ -336,15 +359,14 @@ warning 6002: The table/view 'MangalDB.dbo.tbl_User' does not have a primary key
           <Property Name="DOB" Type="datetime" />
           <Property Name="UserCategory" Type="int" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'MangalDB.dbo.tbl_UserCategory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="tbl_UserCategory">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="refid" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="refid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="100" />
-          <Property Name="isActive" Type="bit" />
+          <Property Name="Organhieraechyid" Type="int" />
+          <Property Name="status1" Type="bit" />
         </EntityType>
         <EntityType Name="tblaccountmaster">
           <Key>
@@ -451,6 +473,18 @@ warning 6002: The table/view 'MangalDB.dbo.tbl_UserCategory' does not have a pri
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Mst_ChildDeviation_Mst_ParentDeviation">
+          <End Role="Mst_ParentDeviation" Type="Self.Mst_ParentDeviation" Multiplicity="1" />
+          <End Role="Mst_ChildDeviation" Type="Self.Mst_ChildDeviation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mst_ParentDeviation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Mst_ChildDeviation">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Mst_City_Mst_City">
           <End Role="Mst_State" Type="Self.Mst_State" Multiplicity="0..1" />
           <End Role="Mst_City" Type="Self.Mst_City" Multiplicity="*" />
@@ -516,11 +550,13 @@ warning 6002: The table/view 'MangalDB.dbo.tbl_UserCategory' does not have a pri
           <EntitySet Name="Mst_Branch" EntityType="Self.Mst_Branch" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mst_Charge" EntityType="Self.Mst_Charge" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mst_ChargeDetails" EntityType="Self.Mst_ChargeDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mst_ChildDeviation" EntityType="Self.Mst_ChildDeviation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mst_City" EntityType="Self.Mst_City" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mst_Country" EntityType="Self.Mst_Country" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mst_DocumentMaster" EntityType="Self.Mst_DocumentMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mst_GstMaster" EntityType="Self.Mst_GstMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mst_Ornament" EntityType="Self.Mst_Ornament" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mst_ParentDeviation" EntityType="Self.Mst_ParentDeviation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mst_PenaltySlab" EntityType="Self.Mst_PenaltySlab" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mst_PinCode" EntityType="Self.Mst_PinCode" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mst_ProductRate" EntityType="Self.Mst_ProductRate" Schema="dbo" store:Type="Tables" />
@@ -533,6 +569,7 @@ warning 6002: The table/view 'MangalDB.dbo.tbl_UserCategory' does not have a pri
           <EntitySet Name="Mst_State" EntityType="Self.Mst_State" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mst_Zone" EntityType="Self.Mst_Zone" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_Menu" EntityType="Self.tbl_Menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_UserCategory" EntityType="Self.tbl_UserCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblaccountmaster" EntityType="Self.tblaccountmaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblfinancialyear" EntityType="Self.tblfinancialyear" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblGroupMaster" EntityType="Self.tblGroupMaster" Schema="dbo" store:Type="Tables" />
@@ -565,13 +602,6 @@ warning 6002: The table/view 'MangalDB.dbo.tbl_UserCategory' does not have a pri
     [tbl_User].[UserCategory] AS [UserCategory]
     FROM [dbo].[tbl_User] AS [tbl_User]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="tbl_UserCategory" EntityType="Self.tbl_UserCategory" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [tbl_UserCategory].[ID] AS [ID], 
-    [tbl_UserCategory].[Name] AS [Name], 
-    [tbl_UserCategory].[isActive] AS [isActive]
-    FROM [dbo].[tbl_UserCategory] AS [tbl_UserCategory]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_Mst_Branch_Mst_PinCode" Association="Self.FK_Mst_Branch_Mst_PinCode">
             <End Role="Mst_PinCode" EntitySet="Mst_PinCode" />
             <End Role="Mst_Branch" EntitySet="Mst_Branch" />
@@ -579,6 +609,10 @@ warning 6002: The table/view 'MangalDB.dbo.tbl_UserCategory' does not have a pri
           <AssociationSet Name="FK_Mst_ChargeDetails_Mst_ChargeDetails" Association="Self.FK_Mst_ChargeDetails_Mst_ChargeDetails">
             <End Role="Mst_Charge" EntitySet="Mst_Charge" />
             <End Role="Mst_ChargeDetails" EntitySet="Mst_ChargeDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mst_ChildDeviation_Mst_ParentDeviation" Association="Self.FK_Mst_ChildDeviation_Mst_ParentDeviation">
+            <End Role="Mst_ParentDeviation" EntitySet="Mst_ParentDeviation" />
+            <End Role="Mst_ChildDeviation" EntitySet="Mst_ChildDeviation" />
           </AssociationSet>
           <AssociationSet Name="FK_Mst_City_Mst_City" Association="Self.FK_Mst_City_Mst_City">
             <End Role="Mst_State" EntitySet="Mst_State" />
@@ -680,10 +714,14 @@ warning 6002: The table/view 'MangalDB.dbo.tbl_UserCategory' does not have a pri
         <EntityType Name="tbl_UserCategory">
           <Key>
             <PropertyRef Name="ID" />
+            <PropertyRef Name="refid" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="isActive" Type="Boolean" />
+          <Property Name="refid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Organhieraechyid" Type="Int32" />
+          <Property Name="status1" Type="Boolean" />
         </EntityType>
         <EntityContainer Name="MangalDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="tbl_Menu" EntityType="Self.tbl_Menu" />
@@ -742,6 +780,12 @@ warning 6002: The table/view 'MangalDB.dbo.tbl_UserCategory' does not have a pri
           <AssociationSet Name="FK_Mst_Branch_Mst_PinCode" Association="MangalDBModel.FK_Mst_Branch_Mst_PinCode">
             <End Role="Mst_PinCode" EntitySet="Mst_PinCode" />
             <End Role="Mst_Branch" EntitySet="Mst_Branch" />
+          </AssociationSet>
+          <EntitySet Name="Mst_ChildDeviation" EntityType="MangalDBModel.Mst_ChildDeviation" />
+          <EntitySet Name="Mst_ParentDeviation" EntityType="MangalDBModel.Mst_ParentDeviation" />
+          <AssociationSet Name="FK_Mst_ChildDeviation_Mst_ParentDeviation" Association="MangalDBModel.FK_Mst_ChildDeviation_Mst_ParentDeviation">
+            <End Role="Mst_ParentDeviation" EntitySet="Mst_ParentDeviation" />
+            <End Role="Mst_ChildDeviation" EntitySet="Mst_ChildDeviation" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Mst_City">
@@ -1178,6 +1222,43 @@ warning 6002: The table/view 'MangalDB.dbo.tbl_UserCategory' does not have a pri
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Mst_ChildDeviation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParentId" Type="Int32" Nullable="false" />
+          <Property Name="ApproveDistanceLimit" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="MinRange" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="MaxRange" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="UserCategoryId" Type="Int32" />
+          <Property Name="ThreasoldLimit" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="RecordCreated" Type="DateTime" Precision="3" />
+          <Property Name="RecordUpdated" Type="DateTime" Precision="3" />
+          <Property Name="RecordCreatedBy" Type="Int32" />
+          <Property Name="RecordUpdatedBy" Type="Int32" />
+          <NavigationProperty Name="Mst_ParentDeviation" Relationship="MangalDBModel.FK_Mst_ChildDeviation_Mst_ParentDeviation" FromRole="Mst_ChildDeviation" ToRole="Mst_ParentDeviation" />
+        </EntityType>
+        <EntityType Name="Mst_ParentDeviation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Mst_ChildDeviation" Relationship="MangalDBModel.FK_Mst_ChildDeviation_Mst_ParentDeviation" FromRole="Mst_ParentDeviation" ToRole="Mst_ChildDeviation" />
+        </EntityType>
+        <Association Name="FK_Mst_ChildDeviation_Mst_ParentDeviation">
+          <End Type="MangalDBModel.Mst_ParentDeviation" Role="Mst_ParentDeviation" Multiplicity="1" />
+          <End Type="MangalDBModel.Mst_ChildDeviation" Role="Mst_ChildDeviation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mst_ParentDeviation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Mst_ChildDeviation">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1263,9 +1344,10 @@ warning 6002: The table/view 'MangalDB.dbo.tbl_UserCategory' does not have a pri
           <EntitySetMapping Name="tbl_UserCategory">
             <EntityTypeMapping TypeName="MangalDBModel.tbl_UserCategory">
               <MappingFragment StoreEntitySet="tbl_UserCategory">
-                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="status1" ColumnName="status1" />
+                <ScalarProperty Name="Organhieraechyid" ColumnName="Organhieraechyid" />
+                <ScalarProperty Name="refid" ColumnName="refid" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="isActive" ColumnName="isActive" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1626,6 +1708,31 @@ warning 6002: The table/view 'MangalDB.dbo.tbl_UserCategory' does not have a pri
                 <ScalarProperty Name="BranchCode" ColumnName="BranchCode" />
                 <ScalarProperty Name="BranchName" ColumnName="BranchName" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mst_ChildDeviation">
+            <EntityTypeMapping TypeName="MangalDBModel.Mst_ChildDeviation">
+              <MappingFragment StoreEntitySet="Mst_ChildDeviation">
+                <ScalarProperty Name="RecordUpdatedBy" ColumnName="RecordUpdatedBy" />
+                <ScalarProperty Name="RecordCreatedBy" ColumnName="RecordCreatedBy" />
+                <ScalarProperty Name="RecordUpdated" ColumnName="RecordUpdated" />
+                <ScalarProperty Name="RecordCreated" ColumnName="RecordCreated" />
+                <ScalarProperty Name="ThreasoldLimit" ColumnName="ThreasoldLimit" />
+                <ScalarProperty Name="UserCategoryId" ColumnName="UserCategoryId" />
+                <ScalarProperty Name="MaxRange" ColumnName="MaxRange" />
+                <ScalarProperty Name="MinRange" ColumnName="MinRange" />
+                <ScalarProperty Name="ApproveDistanceLimit" ColumnName="ApproveDistanceLimit" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mst_ParentDeviation">
+            <EntityTypeMapping TypeName="MangalDBModel.Mst_ParentDeviation">
+              <MappingFragment StoreEntitySet="Mst_ParentDeviation">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -12,13 +12,18 @@ namespace MangalWebProject.Models.Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class tbl_UserCategory
+    public partial class Mst_ParentDeviation
     {
-        public int ID { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Mst_ParentDeviation()
+        {
+            this.Mst_ChildDeviation = new HashSet<Mst_ChildDeviation>();
+        }
+    
+        public int Id { get; set; }
         public string Name { get; set; }
-        public Nullable<bool> isActive { get; set; }
-        public int refid { get; set; }
-        public Nullable<int> Organhieraechyid { get; set; }
-        public Nullable<bool> status1 { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Mst_ChildDeviation> Mst_ChildDeviation { get; set; }
     }
 }
