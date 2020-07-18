@@ -441,6 +441,18 @@ warning 6002: The table/view 'MangalDB.dbo.tbl_UserCategory' does not have a pri
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="sp_insertupdateuser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="mode" Type="varchar" Mode="In" />
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="username" Type="nvarchar" Mode="In" />
+          <Parameter Name="password" Type="nvarchar" Mode="In" />
+          <Parameter Name="emailis" Type="nvarchar" Mode="In" />
+          <Parameter Name="mobileno" Type="varchar" Mode="In" />
+          <Parameter Name="name" Type="nvarchar" Mode="In" />
+          <Parameter Name="gender" Type="nvarchar" Mode="In" />
+          <Parameter Name="dob" Type="date" Mode="In" />
+          <Parameter Name="usercate" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="MangalDBModelStoreContainer">
           <EntitySet Name="Mst_AuditCheckList" EntityType="Self.Mst_AuditCheckList" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mst_Charge" EntityType="Self.Mst_Charge" Schema="dbo" store:Type="Tables" />
@@ -651,6 +663,18 @@ warning 6002: The table/view 'MangalDB.dbo.tbl_UserCategory' does not have a pri
           <EntitySet Name="Mst_SchemePurity" EntityType="MangalDBModel.Mst_SchemePurity" />
           <EntitySet Name="Mst_SchemeMaster" EntityType="MangalDBModel.Mst_SchemeMaster" />
           <EntitySet Name="Mst_ProductRate" EntityType="MangalDBModel.Mst_ProductRate" />
+          <FunctionImport Name="sp_insertupdateuser">
+            <Parameter Name="mode" Mode="In" Type="String" />
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+            <Parameter Name="emailis" Mode="In" Type="String" />
+            <Parameter Name="mobileno" Mode="In" Type="String" />
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="gender" Mode="In" Type="String" />
+            <Parameter Name="dob" Mode="In" Type="DateTime" />
+            <Parameter Name="usercate" Mode="In" Type="Int32" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="Mst_City">
           <Key>
@@ -1414,6 +1438,7 @@ warning 6002: The table/view 'MangalDB.dbo.tbl_UserCategory' does not have a pri
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_insertupdateuser" FunctionName="MangalDBModel.Store.sp_insertupdateuser" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

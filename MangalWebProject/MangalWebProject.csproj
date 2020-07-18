@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -241,6 +242,9 @@
     <Compile Include="Models\Entity\Mst_PinCode.cs">
       <DependentUpon>MagalModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Entity\Mst_ProductRate.cs">
+      <DependentUpon>MagalModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Entity\Mst_PurityMaster.cs">
       <DependentUpon>MagalModel.tt</DependentUpon>
     </Compile>
@@ -248,6 +252,9 @@
       <DependentUpon>MagalModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entity\Mst_SchemeMaster.cs">
+      <DependentUpon>MagalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entity\Mst_SchemePurity.cs">
       <DependentUpon>MagalModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entity\Mst_SourceofApplication.cs">

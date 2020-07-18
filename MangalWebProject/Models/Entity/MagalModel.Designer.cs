@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\Nitesh\Source\Repos\MangalWebProject\MangalWebProject\Models\Entity\MagalModel.edmx'. 
+﻿// T4 code generation is enabled for model 'E:\Projects\MangalWebProject\MangalWebProject\Models\Entity\MagalModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

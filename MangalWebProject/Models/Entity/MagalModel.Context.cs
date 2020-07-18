@@ -12,6 +12,8 @@ namespace MangalWebProject.Models.Entity
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class MangalDBEntities : DbContext
     {
@@ -51,5 +53,50 @@ namespace MangalWebProject.Models.Entity
         public virtual DbSet<Mst_SchemePurity> Mst_SchemePurity { get; set; }
         public virtual DbSet<Mst_SchemeMaster> Mst_SchemeMaster { get; set; }
         public virtual DbSet<Mst_ProductRate> Mst_ProductRate { get; set; }
+    
+        public virtual int sp_insertupdateuser(string mode, Nullable<int> id, string username, string password, string emailis, string mobileno, string name, string gender, Nullable<System.DateTime> dob, Nullable<int> usercate)
+        {
+            var modeParameter = mode != null ?
+                new ObjectParameter("mode", mode) :
+                new ObjectParameter("mode", typeof(string));
+    
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            var usernameParameter = username != null ?
+                new ObjectParameter("username", username) :
+                new ObjectParameter("username", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("password", password) :
+                new ObjectParameter("password", typeof(string));
+    
+            var emailisParameter = emailis != null ?
+                new ObjectParameter("emailis", emailis) :
+                new ObjectParameter("emailis", typeof(string));
+    
+            var mobilenoParameter = mobileno != null ?
+                new ObjectParameter("mobileno", mobileno) :
+                new ObjectParameter("mobileno", typeof(string));
+    
+            var nameParameter = name != null ?
+                new ObjectParameter("name", name) :
+                new ObjectParameter("name", typeof(string));
+    
+            var genderParameter = gender != null ?
+                new ObjectParameter("gender", gender) :
+                new ObjectParameter("gender", typeof(string));
+    
+            var dobParameter = dob.HasValue ?
+                new ObjectParameter("dob", dob) :
+                new ObjectParameter("dob", typeof(System.DateTime));
+    
+            var usercateParameter = usercate.HasValue ?
+                new ObjectParameter("usercate", usercate) :
+                new ObjectParameter("usercate", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_insertupdateuser", modeParameter, idParameter, usernameParameter, passwordParameter, emailisParameter, mobilenoParameter, nameParameter, genderParameter, dobParameter, usercateParameter);
+        }
     }
 }
