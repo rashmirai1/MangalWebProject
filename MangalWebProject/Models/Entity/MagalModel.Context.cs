@@ -98,5 +98,8 @@ namespace MangalWebProject.Models.Entity
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_insertupdateuser", modeParameter, idParameter, usernameParameter, passwordParameter, emailisParameter, mobilenoParameter, nameParameter, genderParameter, dobParameter, usercateParameter);
         }
+        public virtual DbSet<Mst_ProductRateDetails> Mst_ProductRateDetails { get; set; }
+        public virtual DbSet<tblfinancialyear> tblfinancialyears { get; set; }
+        public virtual DbSet<Mst_Branch> Mst_Branch { get; set; }
     }
 }
