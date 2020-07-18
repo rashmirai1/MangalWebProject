@@ -14,6 +14,12 @@ namespace MangalWebProject.Models.Entity
     
     public partial class Mst_PinCode
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Mst_PinCode()
+        {
+            this.Mst_Branch = new HashSet<Mst_Branch>();
+        }
+    
         public int Pc_Id { get; set; }
         public string Pc_Desc { get; set; }
         public string Pc_AreaName { get; set; }
@@ -26,5 +32,7 @@ namespace MangalWebProject.Models.Entity
     
         public virtual Mst_City Mst_City { get; set; }
         public virtual Mst_Zone Mst_Zone { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Mst_Branch> Mst_Branch { get; set; }
     }
 }
