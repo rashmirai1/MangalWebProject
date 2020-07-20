@@ -43,6 +43,7 @@
         <EntityTypeShape EntityType="MangalDBModel.Mst_ChildDeviation" Width="1.5" PointX="19.625" PointY="1" />
         <EntityTypeShape EntityType="MangalDBModel.Mst_ParentDeviation" Width="1.5" PointX="17.375" PointY="1.875" />
         <AssociationConnector Association="MangalDBModel.FK_Mst_ChildDeviation_Mst_ParentDeviation" />
+        <EntityTypeShape EntityType="MangalDBModel.tbl_UserCategory" Width="1.5" PointX="10.375" PointY="4.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

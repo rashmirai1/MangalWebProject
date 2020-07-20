@@ -359,6 +359,15 @@ warning 6002: The table/view 'MangalDB.dbo.tbl_User' does not have a primary key
           <Property Name="DOB" Type="datetime" />
           <Property Name="UserCategory" Type="int" />
         </EntityType>
+        <EntityType Name="tbl_UserCategory">
+          <Key>
+            <PropertyRef Name="refid" />
+          </Key>
+          <Property Name="refid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="Organhieraechyid" Type="int" />
+          <Property Name="status1" Type="bit" />
+        </EntityType>
         <EntityType Name="tblaccountmaster">
           <Key>
             <PropertyRef Name="AccountID" />
@@ -560,6 +569,7 @@ warning 6002: The table/view 'MangalDB.dbo.tbl_User' does not have a primary key
           <EntitySet Name="Mst_State" EntityType="Self.Mst_State" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mst_Zone" EntityType="Self.Mst_Zone" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_Menu" EntityType="Self.tbl_Menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_UserCategory" EntityType="Self.tbl_UserCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblaccountmaster" EntityType="Self.tblaccountmaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblfinancialyear" EntityType="Self.tblfinancialyear" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblGroupMaster" EntityType="Self.tblGroupMaster" Schema="dbo" store:Type="Tables" />
@@ -764,6 +774,7 @@ warning 6002: The table/view 'MangalDB.dbo.tbl_User' does not have a primary key
             <End Role="Mst_ParentDeviation" EntitySet="Mst_ParentDeviation" />
             <End Role="Mst_ChildDeviation" EntitySet="Mst_ChildDeviation" />
           </AssociationSet>
+          <EntitySet Name="tbl_UserCategory" EntityType="MangalDBModel.tbl_UserCategory" />
           </EntityContainer>
         <EntityType Name="Mst_City">
           <Key>
@@ -1236,6 +1247,15 @@ warning 6002: The table/view 'MangalDB.dbo.tbl_User' does not have a primary key
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="tbl_UserCategory">
+          <Key>
+            <PropertyRef Name="refid" />
+          </Key>
+          <Property Name="refid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Organhieraechyid" Type="Int32" />
+          <Property Name="status1" Type="Boolean" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1700,6 +1720,16 @@ warning 6002: The table/view 'MangalDB.dbo.tbl_User' does not have a primary key
               <MappingFragment StoreEntitySet="Mst_ParentDeviation">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_UserCategory">
+            <EntityTypeMapping TypeName="MangalDBModel.tbl_UserCategory">
+              <MappingFragment StoreEntitySet="tbl_UserCategory">
+                <ScalarProperty Name="status1" ColumnName="status1" />
+                <ScalarProperty Name="Organhieraechyid" ColumnName="Organhieraechyid" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="refid" ColumnName="refid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
