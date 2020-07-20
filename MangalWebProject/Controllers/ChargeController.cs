@@ -208,7 +208,6 @@ namespace MangalWebProject.Controllers
 
         #endregion Update Data
 
-
         #region Delete
 
         /// <summary>
@@ -289,6 +288,7 @@ namespace MangalWebProject.Controllers
         }
         #endregion GetChargeDetailsById
 
+        #region ToViewModelPurchase
         public static ChargeViewModel ToViewModelPurchase(Mst_Charge charge, ICollection<Mst_ChargeDetails> ChargeTrnList)
         {
             var purchaseviewmodel = new ChargeViewModel
@@ -316,5 +316,6 @@ namespace MangalWebProject.Controllers
             purchaseviewmodel.chargeDetailsCollection = ChargeTrnViewModelList;
             return purchaseviewmodel;
         }
+        #endregion
     }
 }
