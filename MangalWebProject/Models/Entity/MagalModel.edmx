@@ -359,15 +359,6 @@ warning 6002: The table/view 'MangalDB.dbo.tbl_User' does not have a primary key
           <Property Name="DOB" Type="datetime" />
           <Property Name="UserCategory" Type="int" />
         </EntityType>
-        <EntityType Name="tbl_UserCategory">
-          <Key>
-            <PropertyRef Name="refid" />
-          </Key>
-          <Property Name="refid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="100" />
-          <Property Name="Organhieraechyid" Type="int" />
-          <Property Name="status1" Type="bit" />
-        </EntityType>
         <EntityType Name="tblaccountmaster">
           <Key>
             <PropertyRef Name="AccountID" />
@@ -569,7 +560,6 @@ warning 6002: The table/view 'MangalDB.dbo.tbl_User' does not have a primary key
           <EntitySet Name="Mst_State" EntityType="Self.Mst_State" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mst_Zone" EntityType="Self.Mst_Zone" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_Menu" EntityType="Self.tbl_Menu" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="tbl_UserCategory" EntityType="Self.tbl_UserCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblaccountmaster" EntityType="Self.tblaccountmaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblfinancialyear" EntityType="Self.tblfinancialyear" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblGroupMaster" EntityType="Self.tblGroupMaster" Schema="dbo" store:Type="Tables" />
@@ -711,24 +701,11 @@ warning 6002: The table/view 'MangalDB.dbo.tbl_User' does not have a primary key
           <Property Name="DOB" Type="DateTime" Precision="3" />
           <Property Name="UserCategory" Type="Int32" />
         </EntityType>
-        <EntityType Name="tbl_UserCategory">
-          <Key>
-            <PropertyRef Name="ID" />
-            <PropertyRef Name="refid" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="isActive" Type="Boolean" />
-          <Property Name="refid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Organhieraechyid" Type="Int32" />
-          <Property Name="status1" Type="Boolean" />
-        </EntityType>
         <EntityContainer Name="MangalDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="tbl_Menu" EntityType="Self.tbl_Menu" />
           <EntitySet Name="u_userauthorization" EntityType="Self.u_userauthorization" />
           <EntitySet Name="tbl_Payment" EntityType="Self.tbl_Payment" />
           <EntitySet Name="tbl_User" EntityType="Self.tbl_User" />
-          <EntitySet Name="tbl_UserCategory" EntityType="Self.tbl_UserCategory" />
           <EntitySet Name="Mst_City" EntityType="MangalDBModel.Mst_City" />
           <EntitySet Name="Mst_Country" EntityType="MangalDBModel.Mst_Country" />
           <EntitySet Name="Mst_PinCode" EntityType="MangalDBModel.Mst_PinCode" />
@@ -1338,16 +1315,6 @@ warning 6002: The table/view 'MangalDB.dbo.tbl_User' does not have a primary key
                 <ScalarProperty Name="Gender" ColumnName="Gender" />
                 <ScalarProperty Name="DOB" ColumnName="DOB" />
                 <ScalarProperty Name="UserCategory" ColumnName="UserCategory" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tbl_UserCategory">
-            <EntityTypeMapping TypeName="MangalDBModel.tbl_UserCategory">
-              <MappingFragment StoreEntitySet="tbl_UserCategory">
-                <ScalarProperty Name="status1" ColumnName="status1" />
-                <ScalarProperty Name="Organhieraechyid" ColumnName="Organhieraechyid" />
-                <ScalarProperty Name="refid" ColumnName="refid" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

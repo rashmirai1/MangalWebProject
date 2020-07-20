@@ -12,13 +12,10 @@ namespace MangalWebProject.Models.Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class tbl_UserCategory
+    public partial class Mst_SchemePurity
     {
-        public int ID { get; set; }
-        public string Name { get; set; }
-        public Nullable<bool> isActive { get; set; }
-        public int refid { get; set; }
-        public Nullable<int> Organhieraechyid { get; set; }
-        public Nullable<bool> status1 { get; set; }
+        public int Id { get; set; }
+        public int PurityId { get; set; }
+        public int SchemeId { get; set; }
     }
 }

@@ -29,7 +29,6 @@ namespace MangalWebProject.Models.Entity
         public virtual DbSet<u_userauthorization> u_userauthorization { get; set; }
         public virtual DbSet<tbl_Payment> tbl_Payment { get; set; }
         public virtual DbSet<tbl_User> tbl_User { get; set; }
-        public virtual DbSet<tbl_UserCategory> tbl_UserCategory { get; set; }
         public virtual DbSet<Mst_City> Mst_City { get; set; }
         public virtual DbSet<Mst_Country> Mst_Country { get; set; }
         public virtual DbSet<Mst_PinCode> Mst_PinCode { get; set; }

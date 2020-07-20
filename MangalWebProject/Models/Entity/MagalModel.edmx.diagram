@@ -9,7 +9,6 @@
         <EntityTypeShape EntityType="MangalDBModel.u_userauthorization" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MangalDBModel.tbl_Payment" Width="1.5" PointX="4.75" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MangalDBModel.tbl_User" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MangalDBModel.tbl_UserCategory" Width="1.5" PointX="9.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MangalDBModel.Mst_City" Width="1.5" PointX="14.875" PointY="8.125" />
         <EntityTypeShape EntityType="MangalDBModel.Mst_Country" Width="1.5" PointX="10.375" PointY="8.375" />
         <EntityTypeShape EntityType="MangalDBModel.Mst_PinCode" Width="1.5" PointX="17.125" PointY="8" />
