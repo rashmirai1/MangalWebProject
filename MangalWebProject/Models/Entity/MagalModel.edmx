@@ -427,6 +427,33 @@ warning 6002: The table/view 'MangalDB.dbo.tbl_User' does not have a primary key
           <Property Name="PgID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PgName" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
+        <EntityType Name="Trn_DocumentUpload">
+          <Key>
+            <PropertyRef Name="DocId" />
+          </Key>
+          <Property Name="DocId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TransactionId" Type="int" Nullable="false" />
+          <Property Name="TransactionNumber" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CustomerId" Type="varchar" MaxLength="50" />
+          <Property Name="ApplicationNo" Type="varchar" MaxLength="50" />
+          <Property Name="LoanAccountNo" Type="varchar" MaxLength="50" />
+          <Property Name="DocumentTypeId" Type="int" />
+          <Property Name="DocumentId" Type="int" />
+          <Property Name="ExpiryDate" Type="datetime" />
+          <Property Name="UploadDocName" Type="varbinary(max)" />
+          <Property Name="Comments" Type="varchar" MaxLength="100" />
+          <Property Name="BranchId" Type="int" />
+          <Property Name="FinancialYearId" Type="int" />
+          <Property Name="CompId" Type="int" />
+          <Property Name="VerifiedBy" Type="int" />
+          <Property Name="Status" Type="char" MaxLength="2" />
+          <Property Name="ReasonForRejection" Type="varchar" MaxLength="100" />
+          <Property Name="VerifyComment" Type="varchar" MaxLength="100" />
+          <Property Name="RecordCreated" Type="datetime" />
+          <Property Name="RecordUpdated" Type="datetime" />
+          <Property Name="RecordCreatedBy" Type="int" />
+          <Property Name="RecordUpdatedBy" Type="int" />
+        </EntityType>
         <EntityType Name="u_userauthorization">
           <Key>
             <PropertyRef Name="Id" />
@@ -574,6 +601,7 @@ warning 6002: The table/view 'MangalDB.dbo.tbl_User' does not have a primary key
           <EntitySet Name="tblfinancialyear" EntityType="Self.tblfinancialyear" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblGroupMaster" EntityType="Self.tblGroupMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblPrimaryGroup" EntityType="Self.tblPrimaryGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Trn_DocumentUpload" EntityType="Self.Trn_DocumentUpload" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="u_userauthorization" EntityType="Self.u_userauthorization" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_Payment" EntityType="Self.tbl_Payment" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -775,6 +803,7 @@ warning 6002: The table/view 'MangalDB.dbo.tbl_User' does not have a primary key
             <End Role="Mst_ChildDeviation" EntitySet="Mst_ChildDeviation" />
           </AssociationSet>
           <EntitySet Name="tbl_UserCategory" EntityType="MangalDBModel.tbl_UserCategory" />
+          <EntitySet Name="Trn_DocumentUpload" EntityType="MangalDBModel.Trn_DocumentUpload" />
           </EntityContainer>
         <EntityType Name="Mst_City">
           <Key>
@@ -1256,6 +1285,33 @@ warning 6002: The table/view 'MangalDB.dbo.tbl_User' does not have a primary key
           <Property Name="Organhieraechyid" Type="Int32" />
           <Property Name="status1" Type="Boolean" />
         </EntityType>
+        <EntityType Name="Trn_DocumentUpload">
+          <Key>
+            <PropertyRef Name="DocId" />
+          </Key>
+          <Property Name="DocId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TransactionId" Type="Int32" Nullable="false" />
+          <Property Name="TransactionNumber" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ApplicationNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LoanAccountNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DocumentTypeId" Type="Int32" />
+          <Property Name="DocumentId" Type="Int32" />
+          <Property Name="ExpiryDate" Type="DateTime" Precision="3" />
+          <Property Name="UploadDocName" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Comments" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="BranchId" Type="Int32" />
+          <Property Name="FinancialYearId" Type="Int32" />
+          <Property Name="CompId" Type="Int32" />
+          <Property Name="VerifiedBy" Type="Int32" />
+          <Property Name="Status" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="ReasonForRejection" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="VerifyComment" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="RecordCreated" Type="DateTime" Precision="3" />
+          <Property Name="RecordUpdated" Type="DateTime" Precision="3" />
+          <Property Name="RecordCreatedBy" Type="Int32" />
+          <Property Name="RecordUpdatedBy" Type="Int32" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1730,6 +1786,34 @@ warning 6002: The table/view 'MangalDB.dbo.tbl_User' does not have a primary key
                 <ScalarProperty Name="Organhieraechyid" ColumnName="Organhieraechyid" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="refid" ColumnName="refid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Trn_DocumentUpload">
+            <EntityTypeMapping TypeName="MangalDBModel.Trn_DocumentUpload">
+              <MappingFragment StoreEntitySet="Trn_DocumentUpload">
+                <ScalarProperty Name="RecordUpdatedBy" ColumnName="RecordUpdatedBy" />
+                <ScalarProperty Name="RecordCreatedBy" ColumnName="RecordCreatedBy" />
+                <ScalarProperty Name="RecordUpdated" ColumnName="RecordUpdated" />
+                <ScalarProperty Name="RecordCreated" ColumnName="RecordCreated" />
+                <ScalarProperty Name="VerifyComment" ColumnName="VerifyComment" />
+                <ScalarProperty Name="ReasonForRejection" ColumnName="ReasonForRejection" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="VerifiedBy" ColumnName="VerifiedBy" />
+                <ScalarProperty Name="CompId" ColumnName="CompId" />
+                <ScalarProperty Name="FinancialYearId" ColumnName="FinancialYearId" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="UploadDocName" ColumnName="UploadDocName" />
+                <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+                <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
+                <ScalarProperty Name="DocumentTypeId" ColumnName="DocumentTypeId" />
+                <ScalarProperty Name="LoanAccountNo" ColumnName="LoanAccountNo" />
+                <ScalarProperty Name="ApplicationNo" ColumnName="ApplicationNo" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="TransactionNumber" ColumnName="TransactionNumber" />
+                <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
+                <ScalarProperty Name="DocId" ColumnName="DocId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
