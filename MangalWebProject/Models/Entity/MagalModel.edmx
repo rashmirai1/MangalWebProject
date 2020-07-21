@@ -123,6 +123,13 @@
           <Property Name="Doc_RecordCreatedBy" Type="int" />
           <Property Name="Doc_RecordUpdatedBy" Type="int" />
         </EntityType>
+        <EntityType Name="Mst_DocumentType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
         <EntityType Name="Mst_GstMaster">
           <Key>
             <PropertyRef Name="Gst_RefId" />
@@ -581,6 +588,7 @@ warning 6002: The table/view 'MangalDB.dbo.tbl_User' does not have a primary key
           <EntitySet Name="Mst_City" EntityType="Self.Mst_City" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mst_Country" EntityType="Self.Mst_Country" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mst_DocumentMaster" EntityType="Self.Mst_DocumentMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mst_DocumentType" EntityType="Self.Mst_DocumentType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mst_GstMaster" EntityType="Self.Mst_GstMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mst_Ornament" EntityType="Self.Mst_Ornament" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mst_ParentDeviation" EntityType="Self.Mst_ParentDeviation" Schema="dbo" store:Type="Tables" />
@@ -804,6 +812,7 @@ warning 6002: The table/view 'MangalDB.dbo.tbl_User' does not have a primary key
           </AssociationSet>
           <EntitySet Name="tbl_UserCategory" EntityType="MangalDBModel.tbl_UserCategory" />
           <EntitySet Name="Trn_DocumentUpload" EntityType="MangalDBModel.Trn_DocumentUpload" />
+          <EntitySet Name="Mst_DocumentType" EntityType="MangalDBModel.Mst_DocumentType" />
           </EntityContainer>
         <EntityType Name="Mst_City">
           <Key>
@@ -1312,6 +1321,13 @@ warning 6002: The table/view 'MangalDB.dbo.tbl_User' does not have a primary key
           <Property Name="RecordCreatedBy" Type="Int32" />
           <Property Name="RecordUpdatedBy" Type="Int32" />
         </EntityType>
+        <EntityType Name="Mst_DocumentType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1814,6 +1830,14 @@ warning 6002: The table/view 'MangalDB.dbo.tbl_User' does not have a primary key
                 <ScalarProperty Name="TransactionNumber" ColumnName="TransactionNumber" />
                 <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
                 <ScalarProperty Name="DocId" ColumnName="DocId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mst_DocumentType">
+            <EntityTypeMapping TypeName="MangalDBModel.Mst_DocumentType">
+              <MappingFragment StoreEntitySet="Mst_DocumentType">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

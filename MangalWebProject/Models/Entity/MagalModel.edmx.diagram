@@ -45,6 +45,7 @@
         <AssociationConnector Association="MangalDBModel.FK_Mst_ChildDeviation_Mst_ParentDeviation" />
         <EntityTypeShape EntityType="MangalDBModel.tbl_UserCategory" Width="1.5" PointX="10.375" PointY="4.75" />
         <EntityTypeShape EntityType="MangalDBModel.Trn_DocumentUpload" Width="1.5" PointX="11.375" PointY="17.75" />
+        <EntityTypeShape EntityType="MangalDBModel.Mst_DocumentType" Width="1.5" PointX="16.375" PointY="17.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

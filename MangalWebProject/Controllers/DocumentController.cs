@@ -72,6 +72,7 @@ namespace MangalWebProject.Controllers
             }
             document.DocumentStatus = (short)tblDocument.Doc_Status;
             document.operation = operation;
+            ViewBag.DocumentTypeList = new SelectList(dd._context.Mst_DocumentType.ToList(), "Id", "Name");
             return View("Document", document);
         }
 
@@ -109,6 +110,7 @@ namespace MangalWebProject.Controllers
         public ActionResult Document()
         {
             ButtonVisiblity("Index");
+            ViewBag.DocumentTypeList = new SelectList(dd._context.Mst_DocumentType.ToList(), "Id", "Name");
             return View();
         }
 
@@ -126,38 +128,12 @@ namespace MangalWebProject.Controllers
                 model = new DocumentViewModel();
                 model.ID = item.Doc_Id;
                 model.DocumentName = item.Doc_DocumentName;
-                model.DocumentTypeStr = GetDocumentType((short)item.Doc_DocumentType);
+                model.DocumentTypeStr = dd._context.Mst_DocumentType.Where(x => x.Id == item.Doc_DocumentType).Select(x => x.Name).FirstOrDefault();
                 model.ExpiryApplicableStr = item.Doc_ExpiryDateApplicable == expiryapplicable ? "Yes" : "No";
                 model.DocumentStatusStr = item.Doc_Status == status ? "Active" : "Inactive";
                 list.Add(model);
             }
             return PartialView("_DocumentList", list);
-        }
-
-        public string GetDocumentType(short documenttypeid)
-        {
-            string documenttypestr = "";
-            switch (documenttypeid)
-            {
-                case 1:
-                    documenttypestr = "ID Proof";
-                    break;
-                case 2:
-                    documenttypestr = "Address Proof";
-                    break;
-                case 3:
-                    documenttypestr = "Legal Documents";
-                    break;
-                case 4:
-                    documenttypestr = "Income Proof";
-                    break;
-                case 5:
-                    documenttypestr = "Others";
-                    break;
-                default:
-                    break;
-            }
-            return documenttypestr;
         }
     }
 }

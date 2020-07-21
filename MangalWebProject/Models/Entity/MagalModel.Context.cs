@@ -57,5 +57,6 @@ namespace MangalWebProject.Models.Entity
         public virtual DbSet<Mst_ParentDeviation> Mst_ParentDeviation { get; set; }
         public virtual DbSet<tbl_UserCategory> tbl_UserCategory { get; set; }
         public virtual DbSet<Trn_DocumentUpload> Trn_DocumentUpload { get; set; }
+        public virtual DbSet<Mst_DocumentType> Mst_DocumentType { get; set; }
     }
 }

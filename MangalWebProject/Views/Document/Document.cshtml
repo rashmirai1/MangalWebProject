@@ -59,20 +59,8 @@
                                             <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
                                                 <div class="section">
                                                     <label class="field select">
-                                                        @{
-                                                            var documentTypeList = new SelectList(new[]
-                                                            {
-                                                                new SelectListItem { Text = "Select Document Tye"},
-                                                                new SelectListItem { Text = "ID Proof", Value = "1"},
-                                                                    new SelectListItem { Text = "Address Proof", Value = "2"},
-                                                                    new SelectListItem { Text = "Legal Documents", Value = "3"},
-                                                                    new SelectListItem { Text = "Income Proof", Value = "4"},
-                                                                    new SelectListItem { Text = "Others", Value = "5"}
-                                                                    }, "Value", "Text");
-                                                        }
-                                                        @Html.DropDownListFor(m => m.DocumentType, documentTypeList)
-
-                                                        <span class="text-danger">@Html.ValidationMessageFor(m => m.DocumentType)</span>
+                                                        @Html.DropDownListFor(m => m.DocumentType, (SelectList)ViewBag.DocumentTypeList, "--Select Document Type --", htmlAttributes: new { @class = "form-control" })
+                                                        <span class="text-danger small">@Html.ValidationMessageFor(m => m.DocumentType)</span>
                                                         <i class="arrow"></i>
                                                     </label>
                                                 </div>
